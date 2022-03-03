@@ -3,6 +3,8 @@ import { Pressable, Text, View } from "react-native";
 import { createAnswerSheet } from "../../utils/GameUtils";
 import { createLettersArrayWithPosition } from "../../utils/StringUtils";
 import { styles } from "../../styles/styles";
+import HorizontalQuestionAnswerContainer from "../../components/HorizontalQuestionContainer";
+import HorizontalAnswerContainer from "../../components/HorizontalAnswerContainer";
 
 
 function SolveJumble(props) {
@@ -54,23 +56,10 @@ function SolveJumble(props) {
     return (
         <View style={styles.parentContainer}>
             <View style={styles.questionContainer}>
-
-                <View style={styles.horizontalQuestionContainer}>
-                    {
-                        questionLetters.map(questionLetter => <Pressable style={{ ...styles.card, ...styles.letterCard }} key={`Q${questionLetter.key}`}
-                            disabled={questionLetter.value === ' '} onPress={questionButtonPressHandler.bind(this, questionLetter.key)}>
-                            <Text style={styles.questionText} >{questionLetter.value}</Text>
-                        </Pressable>)
-                    }
-                </View>
+                <HorizontalQuestionAnswerContainer questionButtonPressHandler={questionButtonPressHandler} questionLetters={questionLetters} />
             </View>
             <View style={styles.answerContainer}>
-
-                <View style={styles.horizontalQuestionContainer}>
-                    {
-                        answerSheet.answerLetters.map(answerLetter => <View style={{ ...styles.card, ...styles.letterCard }} key={`A${answerLetter.key}`} ><Text style={styles.questionText} >{answerLetter.value}</Text></View>)
-                    }
-                </View>
+                <HorizontalAnswerContainer answerSheet={answerSheet} />
                 <View style={{ ...styles.horizontalQuestionContainer, ...styles.undoButtonContainer }}>
                     <Pressable style={{ ...styles.card, ...styles.buttonCard }} disabled={answerSheet.lastAnswerPoint < 0} onPress={answerButtonPressHandler}><Text>Undo</Text></Pressable>
                 </View>
