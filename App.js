@@ -1,23 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
+import { StyleSheet, View } from 'react-native';
 import SolveJumble from './screens/SolveJumble/SolveJumble';
-
-
-
 
 export default function App() {
 
-
   return (
     <View style={styles.screen}>
-
       <SolveJumble questionWord="UMBLJe" answerWord="JUMBLE" />
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   screen: {

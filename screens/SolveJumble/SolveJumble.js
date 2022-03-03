@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { View } from "react-native";
+import HorizontalAnswerContainer from "../../components/HorizontalAnswerContainer";
+import HorizontalQuestionAnswerContainer from "../../components/HorizontalQuestionContainer";
+import PressableButton from "../../components/PressableButton";
+import { styles } from "../../styles/styles";
 import { createAnswerSheet } from "../../utils/GameUtils";
 import { createLettersArrayWithPosition } from "../../utils/StringUtils";
-import { styles } from "../../styles/styles";
-import HorizontalQuestionAnswerContainer from "../../components/HorizontalQuestionContainer";
-import HorizontalAnswerContainer from "../../components/HorizontalAnswerContainer";
 
 
 function SolveJumble(props) {
@@ -30,7 +31,7 @@ function SolveJumble(props) {
         })
     }
 
-    function answerButtonPressHandler() {
+    function undoButtonPressHandler() {
         const lastAnswerPoint = answerSheet.lastAnswerPoint;
         console.log('answerSheet is ' + JSON.stringify(answerSheet))
         if (lastAnswerPoint < 0) {
@@ -60,9 +61,7 @@ function SolveJumble(props) {
             </View>
             <View style={styles.answerContainer}>
                 <HorizontalAnswerContainer answerSheet={answerSheet} />
-                <View style={{ ...styles.horizontalQuestionContainer, ...styles.undoButtonContainer }}>
-                    <Pressable style={{ ...styles.card, ...styles.buttonCard }} disabled={answerSheet.lastAnswerPoint < 0} onPress={answerButtonPressHandler}><Text>Undo</Text></Pressable>
-                </View>
+                <PressableButton answerSheet={answerSheet} disabled={answerSheet.lastAnswerPoint < 0} handlerFunction={undoButtonPressHandler} buttonLabel={'Undo'} />
             </View>
         </View >
     );
