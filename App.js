@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
+import SolveJumble from './screens/SolveJumble/SolveJumble';
+
+
+
 
 export default function App() {
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.screen}>
+
+      <SolveJumble questionWord="UMBLJe" answerWord="JUMBLE" />
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    marginTop: 30
+  }
 });
