@@ -9,7 +9,8 @@ export const styles = StyleSheet.create(
         questionContainer: {
             flex: 1,
             backgroundColor: "orange",
-            justifyContent: "center"
+            justifyContent: "center",
+            paddingTop: 40
         },
         answerContainer: {
             flex: 1,
