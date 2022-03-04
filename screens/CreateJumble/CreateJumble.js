@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { View, Text, TextInput, SafeAreaView, Alert } from "react-native"
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { View, Text, TextInput, Alert } from "react-native"
 import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles"
 import { checkStringsAnagram } from "../../utils/StringUtils";
