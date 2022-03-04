@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
+
 
 
 function OnButtonPress() {
@@ -19,6 +20,7 @@ function HomeScreen(props) {
       <Button title="Hello World2" paddingTop="10" onPress={OnButtonPress} />
       <Text>You pressed me {clickCount} time(s)</Text>
       <Button color="#f194ff" title="Up Count" onPress={() => setClickCount(clickCount + 1)} />
+      <TextInput style={styles.input} />
     </View>
   );
 }
@@ -34,6 +36,11 @@ const styles = StyleSheet.create({
     //paddingTop: 10,
     //paddingBottom: 10,
     color: '#f194ff'
+  },
+  input: {
+    width: 200,
+    borderWidth: 1,
+    borderColor: 'red'
   }
 });
 
