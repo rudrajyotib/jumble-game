@@ -8,10 +8,10 @@ import { createAnswerSheet } from "../../utils/GameUtils";
 import { createLettersArrayWithPosition } from "../../utils/StringUtils";
 
 
-function SolveJumble(props) {
+function SolveJumble({ route, navigation }) {
 
-
-    const question = props.questionWord.toUpperCase();
+    const { targetWord, jumbledWord } = route.params
+    const question = jumbledWord.toUpperCase();
 
     const [questionLetters, setQuestionLetters] = useState(createLettersArrayWithPosition(question));
     const [answerSheet, updateAnswerSheet] = useState(createAnswerSheet(question));

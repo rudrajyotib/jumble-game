@@ -4,7 +4,7 @@ import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles"
 import { checkStringsAnagram } from "../../utils/StringUtils";
 
-function CreateJumble(props) {
+function CreateJumble({ navigation }) {
 
     const [targetWord, setTargetWord] = useState('');
     const [confirmed, setConfirmed] = useState(false);
@@ -39,7 +39,12 @@ function CreateJumble(props) {
     function startHandler() {
         if (!checkStringsAnagram(targetWord, jumbledWord)) {
             Alert.alert('Word not jumbled');
+            return;
         }
+        navigation.navigate('SolveJumble', {
+            targetWord: targetWord,
+            jumbledWord: jumbledWord
+        })
     }
 
 
