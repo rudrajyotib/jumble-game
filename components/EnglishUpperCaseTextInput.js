@@ -7,16 +7,22 @@ function EnglishUpperCaseTextInput(props) {
     const [userInput, setUserInput] = useState(props.value);
 
     function changeHandler(text) {
-        let val = text.replace(/[^A-Z]/ig, '');
-        setUserInput(() => val)
-        props.handleOnChangeTargetWord(val)
+        let val = text.toUpperCase().replace(/[^A-Z]/ig, '');
+        setUserInput(() => {
+            props.handleOnChangeTargetWord(val)
+            return val
+        })
+
     }
+
+
 
     return (
         <TextInput
-            style={props.style}
+            // onBlur={blurHandler}
+            style={{ ...props.style, fontWeight: props.fontWeight }}
             onChangeText={changeHandler}
-            autoCapitalize="characters"
+            autoCapitalize={"characters"}
             keyboardAppearance="default"
             value={props.value}
             editable={props.editable}

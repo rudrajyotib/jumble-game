@@ -12,6 +12,11 @@ export const styles = StyleSheet.create(
             justifyContent: "center",
             paddingTop: 40
         },
+        createJumbleContainer: {
+            flex: 1,
+            justifyContent: "center",
+            paddingTop: 40
+        },
         answerContainer: {
             flex: 1,
             backgroundColor: "#ffffcc",
@@ -29,7 +34,7 @@ export const styles = StyleSheet.create(
             backgroundColor: 'white',
             padding: 2,
             borderRadius: 8,
-            margin: 3,
+            margin: 3
         },
         letterCard: {
             width: 40,
