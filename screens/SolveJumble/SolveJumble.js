@@ -14,14 +14,19 @@ function SolveJumble({ route, navigation }) {
 
     function questionButtonPressHandler(index) {
         game.moveFromQuestionToAnswerFrame(index);
-        game.outputPresentState()
+        //game.outputPresentState()
         setQuestionLetters([...game.questionFrame]);
         setAnswerLetters([...game.answerFrame]);
+        if (game.answerReached()) {
+            navigation.navigate('GameOver', {
+                result: 'succesrs'
+            })
+        }
     }
 
     function undoButtonPressHandler() {
         game.undoLastAnswer();
-        game.outputPresentState()
+        // game.outputPresentState()
         setQuestionLetters([...game.questionFrame]);
         setAnswerLetters([...game.answerFrame]);
     }
@@ -39,7 +44,11 @@ function SolveJumble({ route, navigation }) {
                     disableCheckFunction={() => true}
                     questionButtonPressHandler={() => { }}
                     lettersFrame={answerLetters} keyPrefix={'A'} maxRowLength={8} />
-                <PressableButton disabled={game.lastAnswerPoint < 0} handlerFunction={undoButtonPressHandler} buttonLabel={'Undo'} />
+                <PressableButton
+                    style={styles.buttonCard}
+                    disabled={game.lastAnswerPoint < 0}
+                    handlerFunction={undoButtonPressHandler}
+                    buttonLabel={'Undo'} />
             </View>
         </View >
     );

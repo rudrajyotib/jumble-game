@@ -6,7 +6,7 @@ import { styles } from "../../styles/styles"
 import GameController from "../../utils/GameController";
 import { checkStringsAnagram } from "../../utils/StringUtils";
 
-function CreateJumble({ navigation }) {
+function CreateJumble({ route, navigation }) {
 
     const [targetWord, setTargetWord] = useState('');
     const [confirmed, setConfirmed] = useState(false);
@@ -57,10 +57,10 @@ function CreateJumble({ navigation }) {
 
                 <View style={{ ...styles.horizontalQuestionContainer, ...styles.card }}>
                     <View >
-                        <PressableButton disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Confirm'} />
+                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Confirm'} />
                     </View>
                     <View >
-                        <PressableButton disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
+                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
                     </View>
                 </View>
                 <View><Text>Jumble the word</Text></View>
@@ -80,7 +80,7 @@ function CreateJumble({ navigation }) {
                 {
                     confirmed &&
                     <View style={styles.card}>
-                        <PressableButton handlerFunction={startHandler} buttonLabel={'Start'} />
+                        <PressableButton style={styles.buttonCard} handlerFunction={startHandler} buttonLabel={'Start'} />
                     </View>
                 }
             </View>

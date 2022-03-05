@@ -25,7 +25,6 @@ class GameController {
             return
         }
         let indexInQuestionFrame = this.userInput.pop()
-        console.log('last input was:' + indexInQuestionFrame)
         this.questionFrame[indexInQuestionFrame].value = this.answerFrame[this.lastAnswerPoint].value
         this.answerFrame[this.lastAnswerPoint].value = " "
         this.lastAnswerPoint = this.lastAnswerPoint - 1
@@ -45,19 +44,6 @@ class GameController {
     presentStateOfQuestion() {
         return this.questionFrame.map((frame) => frame.value.trim()).join('')
     }
-
-    outputPresentState() {
-        console.log("Answer state::" + this.presentStateOfAnswer() + "::Question state::" + this.presentStateOfQuestion() + "::Check mate::" + this.answerReached())
-    }
-
-    getQuestionFrame() {
-        return this.questionFrame;
-    }
-
-    getAnswerFrame() {
-        return this.answerFrame;
-    }
-
 
 }
 
