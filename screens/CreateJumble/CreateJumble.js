@@ -2,6 +2,7 @@ import { useState } from "react"
 import { View, Text, TextInput, Alert } from "react-native"
 import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles"
+import GameController from "../../utils/GameController";
 import { checkStringsAnagram } from "../../utils/StringUtils";
 
 function CreateJumble({ navigation }) {
@@ -43,7 +44,8 @@ function CreateJumble({ navigation }) {
         }
         navigation.navigate('SolveJumble', {
             targetWord: targetWord,
-            jumbledWord: jumbledWord
+            jumbledWord: jumbledWord,
+            game: new GameController(jumbledWord, targetWord)
         })
     }
 
@@ -60,6 +62,7 @@ function CreateJumble({ navigation }) {
                         keyboardAppearance="default"
                         value={targetWord}
                         editable={!confirmed}
+                        maxLength={8}
                     />
                 </View>
 
