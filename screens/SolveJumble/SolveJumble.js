@@ -32,13 +32,13 @@ function SolveJumble({ route, navigation }) {
                 <LettersContainer
                     disableCheckFunction={(letter) => letter.value.trim() === ''}
                     questionButtonPressHandler={questionButtonPressHandler}
-                    lettersFrame={questionLetters} keyPrefix={'Q'} />
+                    lettersFrame={questionLetters} keyPrefix={'Q'} maxRowLength={8} />
             </View>
             <View style={styles.answerContainer}>
                 <LettersContainer
                     disableCheckFunction={() => true}
                     questionButtonPressHandler={() => { }}
-                    lettersFrame={answerLetters} keyPrefix={'A'} />
+                    lettersFrame={answerLetters} keyPrefix={'A'} maxRowLength={8} />
                 <PressableButton disabled={game.lastAnswerPoint < 0} handlerFunction={undoButtonPressHandler} buttonLabel={'Undo'} />
             </View>
         </View >

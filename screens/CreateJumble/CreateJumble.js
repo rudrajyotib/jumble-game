@@ -51,7 +51,7 @@ function CreateJumble({ navigation }) {
                         handleOnChangeTargetWord={(text) => setTargetWord(() => text)}
                         editable={!confirmed}
                         value={targetWord}
-                        maxLength={8}
+                        maxLength={20}
                     />
                 </View>
 
