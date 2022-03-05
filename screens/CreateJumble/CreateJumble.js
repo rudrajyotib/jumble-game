@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { View, Text, TextInput, Alert } from "react-native"
+import EnglishUpperCaseTextInput from "../../components/EnglishUpperCaseTextInput";
 import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles"
 import GameController from "../../utils/GameController";
@@ -10,16 +11,6 @@ function CreateJumble({ navigation }) {
     const [targetWord, setTargetWord] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [jumbledWord, setJumbledWord] = useState('')
-
-    function handleOnChangeTargetWord(text) {
-        let val = text.replace(/[^A-Z]/ig, '');
-        setTargetWord(() => val.toUpperCase())
-    }
-
-    function handleOnChangeJumbledWord(text) {
-        let val = text.replace(/[^A-Z]/ig, '');
-        setJumbledWord(() => val.toUpperCase())
-    }
 
     function confirmHandler() {
         if (confirmed || targetWord === '' || targetWord.length < 3) {
@@ -55,13 +46,11 @@ function CreateJumble({ navigation }) {
             <View style={{ ...styles.questionContainer, ...{ backgroundColor: '#2BDCBA' } }}>
                 <Text>Create jumble word for your opponent</Text>
                 <View style={styles.card}>
-                    <TextInput
+                    <EnglishUpperCaseTextInput
                         style={styles.input}
-                        onChangeText={handleOnChangeTargetWord}
-                        autoCapitalize="characters"
-                        keyboardAppearance="default"
-                        value={targetWord}
+                        handleOnChangeTargetWord={(text) => setTargetWord(() => text)}
                         editable={!confirmed}
+                        value={targetWord}
                         maxLength={8}
                     />
                 </View>
@@ -79,11 +68,10 @@ function CreateJumble({ navigation }) {
                 {
                     confirmed &&
                     <View style={styles.card}>
-                        <TextInput
+                        <EnglishUpperCaseTextInput
                             style={styles.input}
-                            onChangeText={handleOnChangeJumbledWord}
-                            autoCapitalize="characters"
-                            keyboardAppearance="default"
+                            handleOnChangeTargetWord={(text) => setJumbledWord(() => text)}
+                            editable={true}
                             value={jumbledWord}
                             maxLength={targetWord.length}
                         />
