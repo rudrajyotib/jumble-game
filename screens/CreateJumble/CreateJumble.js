@@ -13,28 +13,28 @@ function CreateJumble({ navigation }) {
 
     function handleOnChangeTargetWord(text) {
         let val = text.replace(/[^A-Z]/ig, '');
-        setTargetWord(val.toUpperCase())
+        setTargetWord(() => val.toUpperCase())
     }
 
     function handleOnChangeJumbledWord(text) {
         let val = text.replace(/[^A-Z]/ig, '');
-        setJumbledWord(val.toUpperCase())
+        setJumbledWord(() => val.toUpperCase())
     }
 
     function confirmHandler() {
         if (confirmed || targetWord === '' || targetWord.length < 3) {
             return
         }
-        setConfirmed(true)
+        setConfirmed(() => true)
     }
 
     function resetHandler() {
         if (!confirmed) {
             return
         }
-        setConfirmed(false)
-        setJumbledWord('')
-        setTargetWord('')
+        setConfirmed(() => false)
+        setJumbledWord(() => '')
+        setTargetWord(() => '')
     }
 
     function startHandler() {
