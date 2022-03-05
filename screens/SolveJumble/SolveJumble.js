@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import HorizontalAnswerContainer from "../../components/HorizontalAnswerContainer";
-import HorizontalQuestionAnswerContainer from "../../components/HorizontalQuestionContainer";
+import LettersContainer from "../../components/LettersContainer";
 import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles";
 
@@ -10,34 +9,36 @@ function SolveJumble({ route, navigation }) {
 
     const { game } = route.params
 
-
-
     const [questionLetters, setQuestionLetters] = useState(game.questionFrame);
-    const [answerSheet, updateAnswerSheet] = useState(game.answerFrame);
-
+    const [answerLetters, setAnswerLetters] = useState(game.answerFrame);
 
     function questionButtonPressHandler(index) {
         game.moveFromQuestionToAnswerFrame(index);
         game.outputPresentState()
         setQuestionLetters([...game.questionFrame]);
-        updateAnswerSheet([...game.answerFrame]);
+        setAnswerLetters([...game.answerFrame]);
     }
 
     function undoButtonPressHandler() {
         game.undoLastAnswer();
         game.outputPresentState()
         setQuestionLetters([...game.questionFrame]);
-        updateAnswerSheet([...game.answerFrame]);
+        setAnswerLetters([...game.answerFrame]);
     }
-
 
     return (
         <View style={styles.parentContainer}>
             <View style={styles.questionContainer}>
-                <HorizontalQuestionAnswerContainer questionButtonPressHandler={questionButtonPressHandler} questionFrame={questionLetters} />
+                <LettersContainer
+                    disableCheckFunction={(letter) => letter.value.trim() === ''}
+                    questionButtonPressHandler={questionButtonPressHandler}
+                    lettersFrame={questionLetters} keyPrefix={'Q'} />
             </View>
             <View style={styles.answerContainer}>
-                <HorizontalAnswerContainer answerFrame={answerSheet} />
+                <LettersContainer
+                    disableCheckFunction={() => true}
+                    questionButtonPressHandler={() => { }}
+                    lettersFrame={answerLetters} keyPrefix={'A'} />
                 <PressableButton disabled={game.lastAnswerPoint < 0} handlerFunction={undoButtonPressHandler} buttonLabel={'Undo'} />
             </View>
         </View >
