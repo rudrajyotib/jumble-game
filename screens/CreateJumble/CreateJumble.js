@@ -5,7 +5,7 @@ import imageDictionary from "../../assets/images";
 import EnglishUpperCaseTextInput from "../../components/EnglishUpperCaseTextInput";
 import PressableButton from "../../components/PressableButton";
 import { styles } from "../../styles/styles"
-import GameController from "../../utils/GameController";
+import { GameController, randomiseString } from "../../utils/GameController";
 import { checkStringsAnagram } from "../../utils/StringUtils";
 
 function CreateJumble({ route, navigation }) {
@@ -18,6 +18,7 @@ function CreateJumble({ route, navigation }) {
         if (confirmed || targetWord === '' || targetWord.length < 3) {
             return
         }
+        setJumbledWord(() => randomiseString(targetWord))
         setConfirmed(() => true)
     }
 
@@ -30,6 +31,10 @@ function CreateJumble({ route, navigation }) {
         setTargetWord(() => {
             return ''
         })
+    }
+
+    function reShuffleHandler() {
+        setJumbledWord(() => randomiseString(targetWord))
     }
 
     function startHandler() {
@@ -72,26 +77,31 @@ function CreateJumble({ route, navigation }) {
                         </View>
 
                         <View style={{ ...styles.horizontalContainer }}>
-                            <View >
-                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Confirm'} />
-                            </View>
-                            <View >
-                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
-                            </View>
+                            {!confirmed &&
+                                <View >
+                                    <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Shuffle'} />
+                                </View>
+                            }
+                            {confirmed &&
+                                <View >
+                                    <View style={{ ...styles.horizontalContainer }}>
+                                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
+                                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
+                                    </View>
+                                </View>
+                            }
                         </View>
 
 
                         {
                             confirmed &&
                             <View >
-                                <View style={{ backgroundColor: "white", opacity: 0.9, alignItems: "center" }}>
-                                    <Text style={{ fontSize: 16 }}>Scramble your target word</Text>
-                                </View>
+
                                 <EnglishUpperCaseTextInput
                                     fontWeight={"bold"}
                                     style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
                                     handleOnChangeTargetWord={(text) => setJumbledWord(() => text)}
-                                    editable={true}
+                                    editable={false}
                                     value={jumbledWord}
                                     maxLength={targetWord.length}
                                 />

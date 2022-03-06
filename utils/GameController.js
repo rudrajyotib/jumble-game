@@ -1,6 +1,6 @@
 import { createLettersArrayWithPosition, createArrayOfEmptyElements } from "./StringUtils.js";
 
-class GameController {
+export class GameController {
     constructor(jumbledInput, target) {
         this.jumbledWord = jumbledInput
         this.targetWord = target
@@ -47,4 +47,18 @@ class GameController {
 
 }
 
-export default GameController
+function arrayRandomiser(inputArray) {
+    n = inputArray.length;
+    for (var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = inputArray[i];
+        inputArray[i] = inputArray[j];
+        inputArray[j] = tmp;
+    }
+    return inputArray
+}
+
+
+export function randomiseString(word) {
+    return arrayRandomiser(word.split('')).join('')
+}
