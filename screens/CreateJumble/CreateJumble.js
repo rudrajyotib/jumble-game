@@ -1,24 +1,29 @@
-import { useState } from "react"
-import { View, Text, TextInput, Alert, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ImageBackground } from "react-native"
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { useState } from "react";
+import { Alert, ImageBackground, Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native";
 import imageDictionary from "../../assets/images";
 import EnglishUpperCaseTextInput from "../../components/EnglishUpperCaseTextInput";
+import LettersContainer from "../../components/LettersContainer";
 import PressableButton from "../../components/PressableButton";
-import { styles } from "../../styles/styles"
+import { styles } from "../../styles/styles";
 import { GameController, randomiseString } from "../../utils/GameController";
-import { checkStringsAnagram } from "../../utils/StringUtils";
+import { checkStringsAnagram, createLettersArrayWithPosition } from "../../utils/StringUtils";
 
 function CreateJumble({ route, navigation }) {
 
     const [targetWord, setTargetWord] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [jumbledWord, setJumbledWord] = useState('')
+    const [shuffledWordFrame, setShuffledWordFrame] = useState([]);
 
     function confirmHandler() {
         if (confirmed || targetWord === '' || targetWord.length < 3) {
             return
         }
-        setJumbledWord(() => randomiseString(targetWord))
+        setJumbledWord(() => {
+            randomString = randomiseString(targetWord)
+            setShuffledWordFrame(() => createLettersArrayWithPosition(randomString))
+            return randomString
+        })
         setConfirmed(() => true)
     }
 
@@ -34,7 +39,11 @@ function CreateJumble({ route, navigation }) {
     }
 
     function reShuffleHandler() {
-        setJumbledWord(() => randomiseString(targetWord))
+        setJumbledWord(() => {
+            randomString = randomiseString(targetWord)
+            setShuffledWordFrame(() => createLettersArrayWithPosition(randomString))
+            return randomString
+        })
     }
 
     function startHandler() {
@@ -96,15 +105,10 @@ function CreateJumble({ route, navigation }) {
                         {
                             confirmed &&
                             <View >
-
-                                <EnglishUpperCaseTextInput
-                                    fontWeight={"bold"}
-                                    style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                                    handleOnChangeTargetWord={(text) => setJumbledWord(() => text)}
-                                    editable={false}
-                                    value={jumbledWord}
-                                    maxLength={targetWord.length}
-                                />
+                                <LettersContainer
+                                    disableCheckFunction={() => true}
+                                    questionButtonPressHandler={() => { }}
+                                    lettersFrame={shuffledWordFrame} keyPrefix={'shuffle'} maxRowLength={8} />
                             </View>
                         }
                         {
