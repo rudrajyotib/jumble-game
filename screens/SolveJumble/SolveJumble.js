@@ -30,8 +30,15 @@ function SolveJumble({ route, navigation }) {
         })
     }
 
-    function undoButtonPressHandler() {
+    function undoOneButtonPressHandler() {
         game.undoLastAnswer();
+        // game.outputPresentState()
+        setQuestionLetters([...game.questionFrame]);
+        setAnswerLetters([...game.answerFrame]);
+    }
+
+    function undoAllButtonPressHandler() {
+        game.undoAll();
         // game.outputPresentState()
         setQuestionLetters([...game.questionFrame]);
         setAnswerLetters([...game.answerFrame]);
@@ -51,11 +58,18 @@ function SolveJumble({ route, navigation }) {
                         disableCheckFunction={() => true}
                         questionButtonPressHandler={() => { }}
                         lettersFrame={answerLetters} keyPrefix={'A'} maxRowLength={8} />
-                    <PressableButton
-                        style={styles.buttonCard}
-                        disabled={game.lastAnswerPoint < 0}
-                        handlerFunction={undoButtonPressHandler}
-                        buttonLabel={'Undo'} />
+                    <View style={styles.horizontalContainer}>
+                        <PressableButton
+                            style={styles.buttonCard}
+                            disabled={game.lastAnswerPoint < 0}
+                            handlerFunction={undoOneButtonPressHandler}
+                            buttonLabel={'Undo One'} />
+                        <PressableButton
+                            style={styles.buttonCard}
+                            disabled={game.lastAnswerPoint < 0}
+                            handlerFunction={undoAllButtonPressHandler}
+                            buttonLabel={'Undo All'} />
+                    </View>
                 </View>
                 <View style={{ flex: 1, justifyContent: "space-around" }}>
                     <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>

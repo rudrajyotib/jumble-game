@@ -30,6 +30,12 @@ export class GameController {
         this.lastAnswerPoint = this.lastAnswerPoint - 1
     }
 
+    undoAll() {
+        while (this.lastAnswerPoint != -1) {
+            this.undoLastAnswer()
+        }
+    }
+
     answerReached() {
         if (this.lastAnswerPoint !== (this.jumbledWord.length - 1)) {
             return false
