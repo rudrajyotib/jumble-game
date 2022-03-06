@@ -7,7 +7,7 @@ export const styles = StyleSheet.create(
             flex: 1
         },
         questionContainer: {
-            flex: 1,
+            flex: 4,
             backgroundColor: "orange",
             justifyContent: "center",
             paddingTop: 40
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create(
             paddingTop: 40
         },
         answerContainer: {
-            flex: 1,
+            flex: 4,
             backgroundColor: "#ffffcc",
             justifyContent: "center"
         },
@@ -55,7 +55,7 @@ export const styles = StyleSheet.create(
         undoButtonContainer: {
             padding: 10
         },
-        horizontalQuestionContainer: {
+        horizontalContainer: {
             flexDirection: "row",
             justifyContent: "center"
         },

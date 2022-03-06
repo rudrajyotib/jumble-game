@@ -11,7 +11,7 @@ function LettersContainer(props) {
         <View>
             {
                 slicedInput.map((slice, index) =>
-                    <View style={styles.horizontalQuestionContainer} key={`${props.keyPrefix}${index}'OuterLayer'`}>
+                    <View style={styles.horizontalContainer} key={`${props.keyPrefix}${index}'OuterLayer'`}>
                         {
                             slice.map(letter => <Pressable style={{ ...styles.card, ...styles.letterCard }} key={`${props.keyPrefix}${letter.key}`}
                                 disabled={props.disableCheckFunction(letter)} onPress={props.questionButtonPressHandler.bind(this, letter.key)}>

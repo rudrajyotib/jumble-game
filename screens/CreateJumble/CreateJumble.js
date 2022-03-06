@@ -71,7 +71,7 @@ function CreateJumble({ route, navigation }) {
                             />
                         </View>
 
-                        <View style={{ ...styles.horizontalQuestionContainer }}>
+                        <View style={{ ...styles.horizontalContainer }}>
                             <View >
                                 <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Confirm'} />
                             </View>
