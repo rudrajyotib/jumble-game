@@ -20,7 +20,7 @@ function EnglishUpperCaseTextInput(props) {
     return (
         <TextInput
             // onBlur={blurHandler}
-            style={{ ...props.style, fontWeight: props.fontWeight }}
+            style={{ ...props.style, fontWeight: props.fontWeight, fontSize: 25 }}
             onChangeText={changeHandler}
             autoCapitalize={"characters"}
             keyboardAppearance="default"

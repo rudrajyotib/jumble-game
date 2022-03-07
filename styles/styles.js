@@ -45,7 +45,7 @@ export const styles = StyleSheet.create(
             alignItems: "center"
         },
         buttonCard: {
-            width: 100,
+            //width: 100,
             height: 50,
             borderColor: "green",
             borderWidth: 4,
@@ -60,10 +60,17 @@ export const styles = StyleSheet.create(
             justifyContent: "center"
         },
         input: {
-            height: 40,
+            height: 60,
             margin: 12,
             borderWidth: 1,
             padding: 10,
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 4 },
+            shadowRadius: 2,
+            shadowOpacity: 0.26,
+            elevation: 8,
+            backgroundColor: 'white',
+            borderRadius: 8,
         }
     }
 

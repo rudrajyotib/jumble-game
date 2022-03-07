@@ -70,37 +70,28 @@ function CreateJumble({ route, navigation }) {
                 style={{ width: '100%', height: '100%' }}
                 resizeMethod="resize">
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
                     <View style={styles.createJumbleContainer}>
-                        <View style={{ backgroundColor: "white", opacity: 0.9, alignItems: "center" }}>
-                            <Text style={{ fontSize: 16 }}>Set your target word</Text>
-                        </View>
-                        <View >
-                            <EnglishUpperCaseTextInput
-                                fontWeight={"bold"}
-                                style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                                handleOnChangeTargetWord={(text) => setTargetWord(() => text)}
-                                editable={!confirmed}
-                                value={targetWord}
-                                maxLength={20}
-                            />
-                        </View>
-
-                        <View style={{ ...styles.horizontalContainer }}>
-                            {!confirmed &&
-                                <View >
-                                    <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'Shuffle'} />
+                        {!confirmed &&
+                            <View>
+                                <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40 }}>
+                                    <Text style={{ fontSize: 30 }}>Set target word</Text>
                                 </View>
-                            }
-                            {confirmed &&
                                 <View >
-                                    <View style={{ ...styles.horizontalContainer }}>
-                                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
-                                        <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
-                                    </View>
+                                    <EnglishUpperCaseTextInput
+                                        fontWeight={"bold"}
+                                        style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
+                                        handleOnChangeTargetWord={(text) => setTargetWord(() => text)}
+                                        editable={!confirmed}
+                                        value={targetWord}
+                                        maxLength={20}
+                                    />
                                 </View>
-                            }
-                        </View>
-
+                                <View>
+                                    <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'SHUFFLE'} />
+                                </View>
+                            </View>
+                        }
 
                         {
                             confirmed &&
@@ -113,8 +104,10 @@ function CreateJumble({ route, navigation }) {
                         }
                         {
                             confirmed &&
-                            <View >
+                            <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "space-between" } }}>
                                 <PressableButton style={styles.buttonCard} handlerFunction={startHandler} buttonLabel={'Start'} />
+                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
+                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
                             </View>
                         }
                     </View>
