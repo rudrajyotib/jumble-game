@@ -14,7 +14,8 @@ function GameOver({ route, navigation }) {
                 resizeMode="stretch">
                 <View style={gameOverStyle.horizontalQuestionContainer}>
                     <PressableButton
-                        style={gameOverStyle.buttonCard}
+                        style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
+                        buttonSize="large"
                         disabled={false}
                         buttonLabel={'Keep Playing !!!'}
                         textStyle={{ fontWeight: "bold", fontSize: 20 }}
@@ -48,6 +49,7 @@ gameOverStyle = StyleSheet.create
                 justifyContent: "center",
                 flex: 1,
                 alignItems: "flex-end",
+                paddingBottom: 30
             },
             buttonCard: {
                 width: 300,

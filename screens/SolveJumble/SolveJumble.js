@@ -60,13 +60,15 @@ function SolveJumble({ route, navigation }) {
                         lettersFrame={answerLetters} keyPrefix={'A'} maxRowLength={8} />
                     <View style={styles.horizontalContainer}>
                         <PressableButton
-                            style={styles.buttonCard}
+                            style={{ ...styles.buttonCard, ...styles.buttonSecondary, paddingHorizontal: 10 }}
                             disabled={game.lastAnswerPoint < 0}
+                            buttonSize="small"
                             handlerFunction={undoOneButtonPressHandler}
-                            buttonLabel={'Undo One'} />
+                            buttonLabel={'Undo'} />
                         <PressableButton
-                            style={styles.buttonCard}
+                            style={{ ...styles.buttonCard, ...styles.buttonSecondary }}
                             disabled={game.lastAnswerPoint < 0}
+                            buttonSize="small"
                             handlerFunction={undoAllButtonPressHandler}
                             buttonLabel={'Undo All'} />
                     </View>
@@ -75,6 +77,7 @@ function SolveJumble({ route, navigation }) {
                     <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
                         <PressableButton
                             style={styles.buttonCard}
+                            buttonSize="small"
                             handlerFunction={skipHandler}
                             buttonLabel={'Skip'} />
                     </View>

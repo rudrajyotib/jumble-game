@@ -74,8 +74,8 @@ function CreateJumble({ route, navigation }) {
                     <View style={styles.createJumbleContainer}>
                         {!confirmed &&
                             <View>
-                                <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40 }}>
-                                    <Text style={{ fontSize: 30 }}>Set target word</Text>
+                                <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
+                                    <Text style={{ fontSize: 30, fontWeight: "bold" }}>Set Target Word</Text>
                                 </View>
                                 <View >
                                     <EnglishUpperCaseTextInput
@@ -88,7 +88,8 @@ function CreateJumble({ route, navigation }) {
                                     />
                                 </View>
                                 <View>
-                                    <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={confirmHandler} buttonLabel={'SHUFFLE'} />
+                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} disabled={targetWord === ''} buttonSize="medium"
+                                        handlerFunction={confirmHandler} buttonLabel={'SHUFFLE'} />
                                 </View>
                             </View>
                         }
@@ -104,10 +105,15 @@ function CreateJumble({ route, navigation }) {
                         }
                         {
                             confirmed &&
-                            <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "space-between" } }}>
-                                <PressableButton style={styles.buttonCard} handlerFunction={startHandler} buttonLabel={'Start'} />
-                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
-                                <PressableButton style={styles.buttonCard} disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Reset'} />
+                            <View>
+                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "center" } }}>
+                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="medium" handlerFunction={startHandler} buttonLabel={'SOLVE !!!'} />
+
+                                </View>
+                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "space-between" } }}>
+                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonSecondary }} buttonSize="small" disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
+                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonLowPriority }} buttonSize="small" disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Try another word'} />
+                                </View>
                             </View>
                         }
                     </View>

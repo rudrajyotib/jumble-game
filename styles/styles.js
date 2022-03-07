@@ -46,11 +46,44 @@ export const styles = StyleSheet.create(
         },
         buttonCard: {
             //width: 100,
-            height: 50,
-            borderColor: "green",
+            //borderColor: "green",
+            borderWidth: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },
+            shadowRadius: 40,
+            shadowOpacity: 0.26,
+            elevation: 8,
+            backgroundColor: 'white',
+            padding: 2,
+            borderRadius: 300,
+            margin: 3
+        },
+        buttonSecondary:
+        {
             borderWidth: 4,
             justifyContent: "center",
             alignItems: "center",
+            borderColor: "black",
+            backgroundColor: "orange"
+        },
+        buttonPrimary:
+        {
+            borderWidth: 4,
+            justifyContent: "center",
+            alignItems: "center",
+            borderColor: "black",
+            backgroundColor: "#09e85f",
+            paddingHorizontal: 20
+        },
+        buttonLowPriority:
+        {
+            borderWidth: 4,
+            justifyContent: "center",
+            alignItems: "center",
+            borderColor: "black",
+            backgroundColor: "#e80987"
         },
         undoButtonContainer: {
             padding: 10
