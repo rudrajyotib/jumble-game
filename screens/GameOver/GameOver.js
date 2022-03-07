@@ -9,14 +9,15 @@ function GameOver({ route, navigation }) {
     return (
         <View style={gameOverStyle.mainContainer}>
             <ImageBackground
-                source={imageDictionary.success}
+                source={imageDictionary[route.params.result]}
                 style={{ width: '100%', height: '100%' }}
-                resizeMethod="resize">
+                resizeMode="stretch">
                 <View style={gameOverStyle.horizontalQuestionContainer}>
                     <PressableButton
                         style={gameOverStyle.buttonCard}
                         disabled={false}
-                        buttonLabel={'Start Over !!!'}
+                        buttonLabel={'Keep Playing !!!'}
+                        textStyle={{ fontWeight: "bold", fontSize: 20 }}
                         handlerFunction={() => {
                             navigation.navigate('Home', {})
                         }} />
@@ -46,10 +47,10 @@ gameOverStyle = StyleSheet.create
                 flexDirection: "row",
                 justifyContent: "center",
                 flex: 1,
-                alignItems: "center",
+                alignItems: "flex-end",
             },
             buttonCard: {
-                width: "90%",
+                width: 300,
                 height: 70,
                 borderColor: "green",
                 borderWidth: 4,

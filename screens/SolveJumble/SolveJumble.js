@@ -26,7 +26,7 @@ function SolveJumble({ route, navigation }) {
 
     function skipHandler() {
         navigation.navigate('GameOver', {
-            result: 'skip'
+            result: 'failed'
         })
     }
 

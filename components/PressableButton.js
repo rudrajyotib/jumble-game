@@ -9,7 +9,7 @@ function PressableButton(props) {
                 style={{ ...props.style, ...styles.card }}
                 disabled={props.disabled}
                 onPress={props.handlerFunction}>
-                <Text>{props.buttonLabel}</Text>
+                <Text style={{ ...props.textStyle }}>{props.buttonLabel}</Text>
             </Pressable>
         </View>
     )
