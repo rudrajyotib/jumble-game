@@ -1,6 +1,6 @@
 import { createLettersArrayWithPosition, createArrayOfEmptyElements, arrayRandomiser, randomiseString } from "./StringUtils.js";
 
-export class GameController {
+export class JumbleController {
     constructor(jumbledInput, target) {
         this.jumbledWord = jumbledInput
         this.targetWord = target
@@ -52,4 +52,3 @@ export class GameController {
     }
 
 }
-

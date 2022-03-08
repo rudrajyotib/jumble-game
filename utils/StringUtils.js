@@ -30,3 +30,19 @@ export function checkStringsAnagram(a, b) {
     let str2 = b.split('').sort().join('');
     return (str1 === str2);
 }
+
+function arrayRandomiser(inputArray) {
+    n = inputArray.length;
+    for (var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = inputArray[i];
+        inputArray[i] = inputArray[j];
+        inputArray[j] = tmp;
+    }
+    return inputArray
+}
+
+
+export function randomiseString(word) {
+    return arrayRandomiser(word.split('')).join('')
+}
