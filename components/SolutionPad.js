@@ -3,6 +3,7 @@ import { View } from "react-native";
 import LettersContainer from "./LettersContainer";
 import PressableButton from "./PressableButton";
 import { styles } from "../styles/styles"
+import CountDown from "react-native-countdown-component";
 
 
 
@@ -27,6 +28,10 @@ function SolutionPad(props) {
         props.onSkip()
     }
 
+    function timeOutHandler() {
+        props.onTimeOut()
+    }
+
     function undoOneButtonPressHandler() {
         game.undoLastAnswer();
         setQuestionLetters([...game.questionFrame]);
@@ -43,6 +48,20 @@ function SolutionPad(props) {
 
     return (
         <View style={styles.parentContainer}>
+            <View style={styles.countdownTimerContainer}>
+                <CountDown
+                    size={20}
+                    until={90}
+                    onFinish={timeOutHandler}
+                    digitStyle={{ backgroundColor: '#FFF', borderWidth: 2, borderColor: '#1CC625' }}
+                    digitTxtStyle={{ color: '#1CC625' }}
+                    timeLabelStyle={{ color: 'red', fontWeight: 'bold' }}
+                    separatorStyle={{ color: '#1CC625' }}
+                    timeToShow={['M', 'S']}
+                    timeLabels={{ m: 'min', s: 'sec' }}
+                    showSeparator
+                />
+            </View>
             <View style={styles.questionContainer}>
                 <LettersContainer
                     disableCheckFunction={(letter) => letter.value.trim() === ''}

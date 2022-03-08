@@ -6,7 +6,18 @@ export const styles = StyleSheet.create(
             flexDirection: "column",
             flex: 1
         },
-        questionContainer: {
+        countdownTimerContainer: {
+            flex: 1,
+            //  backgroundColor: "white",
+            //  justifyContent: "center",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingTop: 30,
+            paddingRight: 30,
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "center",
+        }, questionContainer: {
             flex: 4,
             backgroundColor: "orange",
             justifyContent: "center",

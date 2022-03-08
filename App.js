@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import CreateJumble from './screens/CreateJumble/CreateJumble';
 import GameOver from './screens/GameOver/GameOver';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
 import SolveJumble from './screens/SolveJumble/SolveJumble';
 
 const Stack = createNativeStackNavigator();
