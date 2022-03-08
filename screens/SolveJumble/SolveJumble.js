@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import SolutionPad from "../../components/SolutionPad";
 import { styles } from "../../styles/styles";
+import { JumbleController } from "../../utils/JumbleController";
 
 
 function SolveJumble({ route, navigation }) {
@@ -19,12 +20,13 @@ function SolveJumble({ route, navigation }) {
         })
     }
 
+    const jumbleController = new JumbleController(game.jumbledWord, game.targetWord)
+    let gameContent = <SolutionPad game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} />
+
+
     return (
         <View style={styles.parentContainer}>
-            {
-                console.log(JSON.stringify(game))
-            }
-            <SolutionPad game={game} onSuccess={onSuccessHandler} onSkip={onSkipHandler} />
+            {gameContent}
         </View>
     );
 

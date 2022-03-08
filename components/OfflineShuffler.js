@@ -23,7 +23,6 @@ function OfflineShuffler(props) {
         if (confirmed || targetWord === '' || targetWord.length < 3) {
             return
         }
-        console.log('Confirmed by User')
         setJumbledWord(() => {
             randomString = randomiseString(targetWord)
             setShuffledWordFrame(() => createLettersArrayWithPosition(randomString))
