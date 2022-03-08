@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import OfflineShuffler from "../../components/OfflineShuffler";
-import { GameController } from "../../utils/GameController";
+import { GameConstants } from "../../utils/Constants";
+import { GameContainer } from "../../utils/GameContainer";
 
 function CreateJumble({ route, navigation }) {
 
@@ -8,7 +9,7 @@ function CreateJumble({ route, navigation }) {
         navigation.navigate('SolveJumble', {
             targetWord: targetWord,
             jumbledWord: jumbledWord,
-            game: new GameController(jumbledWord, targetWord)
+            game: new GameContainer(GameConstants.GAME_TYPE_JUMBLE, jumbledWord, targetWord)
         })
     }} />
 

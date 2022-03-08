@@ -20,7 +20,7 @@ function SolveJumble({ route, navigation }) {
         })
     }
 
-    const jumbleController = new JumbleController(game.jumbledWord, game.targetWord)
+    const jumbleController = new JumbleController(game.question, game.answer)
     let gameContent = <SolutionPad game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} />
 
 
