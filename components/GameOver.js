@@ -1,6 +1,6 @@
-import { ImageBackground, Pressable, StyleSheet, View, Text } from "react-native";
-import { styles } from "../styles/styles"
+import { ImageBackground, StyleSheet, View } from "react-native";
 import imageDictionary from "../assets/images";
+import { styles } from "../styles/styles";
 import PressableButton from "./PressableButton";
 
 function GameOver(props) {
