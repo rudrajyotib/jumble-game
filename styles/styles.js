@@ -47,6 +47,18 @@ export const styles = StyleSheet.create(
             borderRadius: 8,
             margin: 3
         },
+        transparentCard: {
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 1 },
+            shadowRadius: 2,
+            shadowOpacity: 0.26,
+            elevation: 8,
+            padding: 2,
+            borderRadius: 30,
+            borderColor: 'black',
+            borderWidth: 1,
+            margin: 3
+        },
         letterCard: {
             width: 40,
             height: 40,

@@ -1,15 +1,22 @@
 import { useState } from "react"
 import { TextInput } from "react-native";
 
-function EnglishUpperCaseTextInput(props) {
+function EnglishLettersOnlyTextInput(props) {
 
 
     const [userInput, setUserInput] = useState(props.value);
+    const upperCaseOnly = props.upperCaseOnly === true ? true : false
+    let matcherExpression = /[^A-Za-z]/ig
+    if (upperCaseOnly === true) {
+        matcherExpression = /[^A-Z]/ig
+    }
+    //upperCaseOnly
 
     function changeHandler(text) {
-        let val = text.toUpperCase().replace(/[^A-Z]/ig, '');
+        let updatedText = upperCaseOnly ? text.toUpperCase() : text
+        let val = updatedText.replace(matcherExpression, '');
         setUserInput(() => {
-            props.handleOnChangeTargetWord(val)
+            props.onTextChange(val)
             return val
         })
 
@@ -31,4 +38,4 @@ function EnglishUpperCaseTextInput(props) {
     )
 }
 
-export default EnglishUpperCaseTextInput
+export default EnglishLettersOnlyTextInput

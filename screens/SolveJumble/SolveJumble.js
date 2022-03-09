@@ -1,27 +1,61 @@
+import { useState } from "react";
 import { View } from "react-native";
 import SolutionPad from "../../components/SolutionPad";
 import { styles } from "../../styles/styles";
 import { JumbleController } from "../../utils/JumbleController";
+import GameOver from "../../components/GameOver";
 
 
 function SolveJumble({ route, navigation }) {
 
     const { game } = route.params
+    const [gameOn, setGameOn] = useState(true)
+    const [result, setResult] = useState('')
 
     function onSkipHandler() {
-        navigation.navigate('GameOver', {
+        if (gameOn === false) {
+            return
+        }
+        setResult(() => 'failed')
+        setGameOn(() => false)
+    }
+
+    function onTimeOutHandler() {
+        if (gameOn === false) {
+            return
+        }
+        setResult(() => 'failed')
+        setGameOn(() => false)
+    }
+
+    function onContinueGameOver() {
+        navigation.navigate('Home', {
             result: 'failed'
         })
     }
 
     function onSuccessHandler() {
-        navigation.navigate('GameOver', {
-            result: 'success'
-        })
+        if (gameOn === false) {
+            return
+        }
+        setResult(() => 'success')
+        setGameOn(() => false)
+
+        // navigation.navigate('GameOver', {
+        //     result: 'success'
+        // })
+        //result = 'success'
     }
 
     const jumbleController = new JumbleController(game.question, game.answer)
-    let gameContent = <SolutionPad game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onSkipHandler} />
+    let gameContent = <View></View>
+    {
+        if (gameOn === true) {
+            gameContent = <SolutionPad game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
+        } else {
+            gameContent = <GameOver onContinueGameOver={onContinueGameOver} result={result} />
+        }
+    }
 
 
     return (

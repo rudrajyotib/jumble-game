@@ -1,15 +1,18 @@
 import { ImageBackground, Pressable, StyleSheet, View, Text } from "react-native";
-import { styles } from "../../styles/styles";
-import imageDictionary from "../../assets/images";
-import PressableButton from "../../components/PressableButton";
+import { styles } from "../styles/styles"
+import imageDictionary from "../assets/images";
+import PressableButton from "./PressableButton";
 
-function GameOver({ route, navigation }) {
+function GameOver(props) {
 
+    {
+        console.log('result received::' + props.result)
+    }
 
     return (
         <View style={gameOverStyle.mainContainer}>
             <ImageBackground
-                source={imageDictionary[route.params.result]}
+                source={imageDictionary[props.result]}
                 style={{ width: '100%', height: '100%' }}
                 resizeMode="stretch">
                 <View style={gameOverStyle.horizontalQuestionContainer}>
@@ -19,9 +22,7 @@ function GameOver({ route, navigation }) {
                         disabled={false}
                         buttonLabel={'Keep Playing !!!'}
                         textStyle={{ fontWeight: "bold", fontSize: 20 }}
-                        handlerFunction={() => {
-                            navigation.navigate('Home', {})
-                        }} />
+                        handlerFunction={props.onContinueGameOver} />
                 </View>
 
             </ImageBackground >

@@ -4,7 +4,7 @@ import imageDictionary from "../assets/images"
 import { styles } from "../styles/styles"
 import { randomiseString } from "../utils/StringUtils"
 import { createLettersArrayWithPosition } from "../utils/StringUtils"
-import EnglishUpperCaseTextInput from "./EnglishUpperCaseTextInput"
+import EnglishLettersOnlyTextInput from "./EnglishLettersOnlyTextInput"
 import LettersContainer from "./LettersContainer"
 import PressableButton from "./PressableButton"
 
@@ -74,10 +74,11 @@ function OfflineShuffler(props) {
                                     <Text style={{ fontSize: 30, fontWeight: "bold" }}>Set Target Word</Text>
                                 </View>
                                 <View >
-                                    <EnglishUpperCaseTextInput
+                                    <EnglishLettersOnlyTextInput
                                         fontWeight={"bold"}
+                                        upperCaseOnly={true}
                                         style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                                        handleOnChangeTargetWord={(text) => setTargetWord(() => text)}
+                                        onTextChange={(text) => setTargetWord(() => text)}
                                         editable={!confirmed}
                                         value={targetWord}
                                         maxLength={20}

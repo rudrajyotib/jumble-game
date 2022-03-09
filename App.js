@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import CreateJumble from './screens/CreateJumble/CreateJumble';
+import GameMode from './screens/GameMode/GameMode';
 import GameOver from './screens/GameOver/GameOver';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import SolveJumble from './screens/SolveJumble/SolveJumble';
@@ -17,6 +18,7 @@ export default function App() {
         headerShown: false
       }}>
         <Stack.Screen name="Home" component={CreateJumble} />
+        <Stack.Screen name="GameMode" component={GameMode} />
         <Stack.Screen name="SolveJumble" component={SolveJumble} />
         <Stack.Screen name="GameOver" component={GameOver} />
       </Stack.Navigator>
