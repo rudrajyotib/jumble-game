@@ -29,7 +29,7 @@ function SolveJumble({ route, navigation }) {
     }
 
     function onContinueGameOver() {
-        navigation.navigate('Home', {
+        navigation.navigate('CreateJumble', {
             result: 'failed'
         })
     }

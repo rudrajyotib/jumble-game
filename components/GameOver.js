@@ -5,10 +5,6 @@ import PressableButton from "./PressableButton";
 
 function GameOver(props) {
 
-    {
-        console.log('result received::' + props.result)
-    }
-
     return (
         <View style={gameOverStyle.mainContainer}>
             <ImageBackground

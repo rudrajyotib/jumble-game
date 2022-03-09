@@ -14,13 +14,12 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{
+      <Stack.Navigator initialRouteName='CreateJumble' screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name="Home" component={CreateJumble} />
+        <Stack.Screen name="CreateJumble" component={CreateJumble} />
         <Stack.Screen name="GameMode" component={GameMode} />
         <Stack.Screen name="SolveJumble" component={SolveJumble} />
-        <Stack.Screen name="GameOver" component={GameOver} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -11,6 +11,11 @@ function DualPlayerMode(props) {
     const [player1, setPlayer1] = useState('')
     const [player2, setPlayer2] = useState('')
 
+
+    function proceedToGameHandler() {
+        props.onContinue(player1, player2)
+    }
+
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer, paddingTop: 40, flex: 1 }}>
 
@@ -25,7 +30,12 @@ function DualPlayerMode(props) {
                             <PlayerName caption="Player 2" onTextChange={(text) => setPlayer2(text)} />
                         </View>
                         <View style={{ flex: 2, alignItems: "flex-end" }}>
-                            <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="medium" buttonLabel="Proceed to Game" />
+                            <PressableButton
+                                handlerFunction={proceedToGameHandler}
+                                style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
+                                disabled={false}
+                                buttonSize="medium"
+                                buttonLabel="Proceed to Game" />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

@@ -6,7 +6,7 @@ function EnglishLettersOnlyTextInput(props) {
 
     const [userInput, setUserInput] = useState(props.value);
     const upperCaseOnly = props.upperCaseOnly === true ? true : false
-    let matcherExpression = /[^A-Za-z]/ig
+    let matcherExpression = /[^a-zA-Z]/ig
     if (upperCaseOnly === true) {
         matcherExpression = /[^A-Z]/ig
     }
