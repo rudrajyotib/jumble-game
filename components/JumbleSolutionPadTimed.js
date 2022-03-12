@@ -22,7 +22,7 @@ function JumbleSolutionPadTimed(props) {
         setQuestionLetters([...game.questionFrame]);
         setAnswerLetters([...game.answerFrame]);
         if (game.answerReached()) {
-            props.onSuccess()
+            props.onGameResult('success')
         }
     }
 
@@ -32,11 +32,11 @@ function JumbleSolutionPadTimed(props) {
 
 
     function skipHandler() {
-        props.onSkip()
+        props.onGameResult('skip')
     }
 
     function timeOutHandler() {
-        props.onTimeOut()
+        props.onGameResult('timedout')
     }
 
     function undoOneButtonPressHandler() {

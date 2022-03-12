@@ -20,7 +20,15 @@ function JumbleSolutionController(props) {
     const [countDownOn, setCountDown] = useState(false);
 
 
-
+    const gameResultHandler = (result) => {
+        if ('success' === result) {
+            props.onSuccess()
+        } else if ('skip' === result) {
+            props.onSkip()
+        } else if ('timedout' === result) {
+            props.onTimeOut()
+        }
+    }
 
     let gamePad = <View></View>
     if ('await' === gameState) {
@@ -29,7 +37,7 @@ function JumbleSolutionController(props) {
         }} />
     }
     else if ('on' === gameState) {
-        gamePad = <JumbleSolutionPadTimed game={game} onSuccess={props.onSuccess} onSkip={props.onSkip} onTimeOut={props.onTimeOut} />
+        gamePad = <JumbleSolutionPadTimed game={game} onGameResult={gameResultHandler} />
     }
 
     return (
