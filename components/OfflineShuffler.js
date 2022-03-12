@@ -5,7 +5,7 @@ import { styles } from "../styles/styles"
 import { randomiseString } from "../utils/StringUtils"
 import { createLettersArrayWithPosition } from "../utils/StringUtils"
 import EnglishLettersOnlyTextInput from "./EnglishLettersOnlyTextInput"
-import LettersContainer from "./LettersContainer"
+import ConfirmTarget from "./modals/ConfirmTarget"
 import PressableButton from "./PressableButton"
 
 
@@ -15,7 +15,7 @@ function OfflineShuffler(props) {
     const [confirmed, setConfirmed] = useState(false);
     const [targetWord, setTargetWord] = useState('');
     const [jumbledWord, setJumbledWord] = useState('')
-    const [shuffledWordFrame, setShuffledWordFrame] = useState([]);
+    const [targetWordFrame, setTargetWordFrame] = useState([]);
 
 
 
@@ -24,17 +24,21 @@ function OfflineShuffler(props) {
             return
         }
         setJumbledWord(() => {
-            randomString = randomiseString(targetWord)
-            setShuffledWordFrame(() => createLettersArrayWithPosition(randomString))
+            let randomString = randomiseString(targetWord)
             return randomString
         })
+        setTargetWordFrame(() => createLettersArrayWithPosition(targetWord))
         setConfirmed(() => true)
     }
 
-    function resetHandler() {
-        if (!confirmed) {
-            return
-        }
+    function confirmTargetHandler() {
+        props.onStart(targetWord, jumbledWord)
+        setTargetWord('')
+        setConfirmed(false)
+        setJumbledWord(() => '')
+    }
+
+    function rejectHandler() {
         setConfirmed(() => false)
         setJumbledWord(() => '')
         setTargetWord(() => {
@@ -42,36 +46,21 @@ function OfflineShuffler(props) {
         })
     }
 
-    function reShuffleHandler() {
-        setJumbledWord(() => {
-            randomString = randomiseString(targetWord)
-            setShuffledWordFrame(() => createLettersArrayWithPosition(randomString))
-            return randomString
-        })
-    }
-
-
-    function startHandler() {
-        props.onStart(targetWord, jumbledWord)
-        setTargetWord('')
-        setConfirmed(false)
-        setJumbledWord(() => '')
-    }
-
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
 
-            <ImageBackground
-                source={imageDictionary.createBackground}
-                style={{ width: '100%', height: '100%' }}
-                resizeMethod="resize">
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <ImageBackground
+                    source={imageDictionary.createBackground}
+                    style={{ width: '100%', height: '100%' }}
+                    resizeMethod="resize">
 
                     <View style={styles.createJumbleContainer}>
                         {!confirmed &&
                             <View>
                                 <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
-                                    <Text style={{ fontSize: 30, fontWeight: "bold" }}>Set Target Word</Text>
+                                    <Text style={{ fontSize: 30, fontWeight: "bold" }}>Word of your choice</Text>
                                 </View>
                                 <View >
                                     <EnglishLettersOnlyTextInput
@@ -86,36 +75,17 @@ function OfflineShuffler(props) {
                                 </View>
                                 <View>
                                     <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} disabled={targetWord === ''} buttonSize="medium"
-                                        handlerFunction={confirmHandler} buttonLabel={'SHUFFLE'} />
+                                        handlerFunction={confirmHandler} buttonLabel={'Set Target'} />
                                 </View>
                             </View>
                         }
 
-                        {
-                            confirmed &&
-                            <View >
-                                <LettersContainer
-                                    disableCheckFunction={() => true}
-                                    questionButtonPressHandler={() => { }}
-                                    lettersFrame={shuffledWordFrame} keyPrefix={'shuffle'} maxRowLength={8} />
-                            </View>
-                        }
-                        {
-                            confirmed &&
-                            <View>
-                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "center" } }}>
-                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="medium" handlerFunction={startHandler} buttonLabel={'SOLVE !!!'} />
 
-                                </View>
-                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "space-between" } }}>
-                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonSecondary }} buttonSize="small" disabled={targetWord === ''} handlerFunction={reShuffleHandler} buttonLabel={'Re-shuffle'} />
-                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonLowPriority }} buttonSize="small" disabled={targetWord === ''} handlerFunction={resetHandler} buttonLabel={'Try another word'} />
-                                </View>
-                            </View>
-                        }
+                        {confirmed && <ConfirmTarget frame={targetWordFrame} modalVisibleProp={true} onRejectTarget={rejectHandler} onConfirmTarget={confirmTargetHandler} />}
                     </View>
-                </TouchableWithoutFeedback>
-            </ImageBackground>
+
+                </ImageBackground>
+            </TouchableWithoutFeedback>
 
         </KeyboardAvoidingView >
     )
