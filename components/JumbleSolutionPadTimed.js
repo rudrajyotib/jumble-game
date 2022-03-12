@@ -7,13 +7,15 @@ import CountDown from "react-native-countdown-component";
 
 
 
-function SolutionPad(props) {
+function JumbleSolutionPadTimed(props) {
 
 
     const game = props.game
 
     const [questionLetters, setQuestionLetters] = useState(game.questionFrame);
     const [answerLetters, setAnswerLetters] = useState(game.answerFrame);
+    const [gameState, setGameState] = useState('await');
+    const [countDownOn, setCountDown] = useState(false);
 
     function questionButtonPressHandler(index) {
         game.moveFromQuestionToAnswerFrame(index);
@@ -23,6 +25,11 @@ function SolutionPad(props) {
             props.onSuccess()
         }
     }
+
+    function gameReadyAndStartHandler() {
+        setGameState(() => 'on');
+    }
+
 
     function skipHandler() {
         props.onSkip()
@@ -105,4 +112,4 @@ function SolutionPad(props) {
 }
 
 
-export default SolutionPad
+export default JumbleSolutionPadTimed

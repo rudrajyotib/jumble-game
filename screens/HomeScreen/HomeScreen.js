@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, Modal, Pressable } from 'react-native';
 import LettersContainer from '../../components/LettersContainer';
+import ReadyCheck from '../../components/modals/ReadyCheck';
 import { createLettersArrayWithPosition } from '../../utils/StringUtils';
 
 
@@ -14,6 +15,7 @@ function OnButtonPress() {
 function HomeScreen(props) {
   const [clickCount, setClickCount] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const [startVisible, setStartVisible] = useState(false);
   const [frame, setFrame] = useState(createLettersArrayWithPosition("INTERNATIONALIZATION"));
 
   return (
@@ -25,8 +27,12 @@ function HomeScreen(props) {
       <Text>You pressed me {clickCount} time(s)</Text>
       <Button color="#f194ff" title="Up Count" onPress={() => setClickCount(clickCount + 1)} />
       <Button color="#f194ff" title="Show Modal" onPress={() => setModalVisible(!modalVisible)} />
+      <Button color="#f194ff" title="Show Start" onPress={() => setStartVisible(!startVisible)} />
       <TextInput style={styles.input} />
 
+      {
+        startVisible && <ReadyCheck onStart={() => setStartVisible(!startVisible)} />
+      }
       <View>
         <Modal
           animationType="fade"
