@@ -3,6 +3,7 @@ import { Modal, Text, View } from "react-native"
 import { styles } from "../../styles/styles";
 import LettersContainer from "../LettersContainer";
 import PressableButton from "../PressableButton";
+import { modalStyles } from "./styles/ModalStyles";
 
 function ConfirmTarget(props) {
 
@@ -17,29 +18,9 @@ function ConfirmTarget(props) {
                 onRequestClose={() => {
 
                 }}>
-                <View style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: 22,
-                }}>
-                    <View style={{
-                        margin: 20,
-                        backgroundColor: "orange",
-                        borderRadius: 20,
-                        padding: 35,
-                        alignItems: "center",
-                        shadowColor: "#000",
-                        shadowOffset: {
-                            width: 0,
-                            height: 2
-                        },
-                        shadowOpacity: 0.25,
-                        shadowRadius: 4,
-                        elevation: 5
-                    }}>
+                <View style={{ ...modalStyles.modalViewContainer }}>
+                    <View style={{ ...modalStyles.modalBodyContainer }}>
                         <View >
-                            {/* <Text style={{ ...styles.modalText, ...styles.textStyle }}>You have set target</Text> */}
                             <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 20, padding: 20 }}>
                                 <Text style={{ fontSize: 20, fontWeight: "bold" }}>Your chosen target is</Text>
                             </View>

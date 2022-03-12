@@ -14,8 +14,6 @@ function JumbleSolutionPadTimed(props) {
 
     const [questionLetters, setQuestionLetters] = useState(game.questionFrame);
     const [answerLetters, setAnswerLetters] = useState(game.answerFrame);
-    const [gameState, setGameState] = useState('await');
-    const [countDownOn, setCountDown] = useState(false);
 
     function questionButtonPressHandler(index) {
         game.moveFromQuestionToAnswerFrame(index);
@@ -26,9 +24,6 @@ function JumbleSolutionPadTimed(props) {
         }
     }
 
-    function gameReadyAndStartHandler() {
-        setGameState(() => 'on');
-    }
 
 
     function skipHandler() {

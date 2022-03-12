@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import LettersContainer from "./LettersContainer";
-import PressableButton from "./PressableButton";
 import { styles } from "../styles/styles"
-import CountDown from "react-native-countdown-component";
 import JumbleSolutionPadTimed from "./JumbleSolutionPadTimed";
 import ReadyCheck from "./modals/ReadyCheck";
 import CorrectAnswer from "./modals/CorrectAnswer";
@@ -16,22 +13,12 @@ function JumbleSolutionController(props) {
 
     const game = props.game
 
-    const [questionLetters, setQuestionLetters] = useState(game.questionFrame);
-    const [answerLetters, setAnswerLetters] = useState(game.answerFrame);
     const [gameState, setGameState] = useState('await');
-    const [countDownOn, setCountDown] = useState(false);
     const [result, setResult] = useState('');
 
 
     const gameResultHandler = (result) => {
         setResult(() => result)
-        // if ('success' === result) {
-        //     props.onSuccess()
-        // } else if ('skip' === result) {
-        //     props.onSkip()
-        // } else if ('timedout' === result) {
-        //     props.onTimeOut()
-        // }
         setGameState(() => 'over');
     }
 
