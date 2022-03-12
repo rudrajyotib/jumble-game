@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { View } from "react-native";
-import SolutionPad from "../../components/SolutionPad";
+import SolutionPad from "../../components/JumbleSolutionPadTimed";
 import { styles } from "../../styles/styles";
 import { JumbleController } from "../../utils/JumbleController";
 import GameOver from "../../components/GameOver";
+import JumbleSolutionController from "../../components/JumbleSolutionController";
 
 
 function SolveJumble({ route, navigation }) {
@@ -51,7 +52,7 @@ function SolveJumble({ route, navigation }) {
     let gameContent = <View></View>
     {
         if (gameOn === true) {
-            gameContent = <SolutionPad game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
+            gameContent = <JumbleSolutionController game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
         } else {
             gameContent = <GameOver onContinueGameOver={onContinueGameOver} result={result} />
         }
