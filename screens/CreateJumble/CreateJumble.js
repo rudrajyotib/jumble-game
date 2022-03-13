@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import OfflineShuffler from "../../components/OfflineShuffler";
+import OfflineShuffler from "../../components/jumble/OfflineShuffler";
 import { GameConstants } from "../../utils/Constants";
 import { GameContainer } from "../../utils/GameContainer";
 

@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { View } from "react-native"
-import { styles } from "../styles/styles"
-import { JumbleController } from "../utils/JumbleController"
+import { styles } from "../../styles/styles"
+import { JumbleController } from "../../utils/JumbleController"
 import GameOver from "./GameOver"
-import JumbleSolutionController from "./JumbleSolutionController"
+import JumbleSolutionController from "../jumble/JumbleSolutionController"
 
 function SolutionPad(props) {
 

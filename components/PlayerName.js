@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import { styles } from "../styles/styles";
-import EnglishLettersOnlyTextInput from "./EnglishLettersOnlyTextInput";
+import EnglishLettersOnlyTextInput from "./elements/EnglishLettersOnlyTextInput";
 
 function PlayerName(props) {
     return (<View>

@@ -1,5 +1,5 @@
 import { View } from "react-native"
-import DualPlayerMode from "../../components/DualPlayerMode"
+import DualPlayerMode from "../../components/game/DualPlayerMode"
 
 function GameMode({ route, navigation }) {
 

@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Text, View } from "react-native"
 import { ImageBackground } from "react-native";
-import imageDictionary from "../assets/images";
-import { styles } from "../styles/styles"
-import { GameConstants } from "../utils/Constants";
-import { GameContainer } from "../utils/GameContainer";
-import OfflineShuffler from "./OfflineShuffler";
+import imageDictionary from "../../assets/images";
+import { styles } from "../../styles/styles"
+import { GameConstants } from "../../utils/Constants";
+import { GameContainer } from "../../utils/GameContainer";
+import OfflineShuffler from "../jumble/OfflineShuffler";
 import SolutionPad from "./SolutionPad";
 
 function GamePad(props) {

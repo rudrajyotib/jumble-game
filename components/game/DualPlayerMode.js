@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { ImageBackground, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from "react-native"
-import imageDictionary from "../assets/images"
-import { styles } from "../styles/styles"
-import PlayerName from "./PlayerName"
-import PressableButton from "./PressableButton"
+import imageDictionary from "../../assets/images"
+import { styles } from "../../styles/styles"
+import PlayerName from "../PlayerName"
+import PressableButton from "../elements/PressableButton"
 
 function DualPlayerMode(props) {
 

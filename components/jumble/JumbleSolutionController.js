@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { styles } from "../styles/styles"
+import { styles } from "../../styles/styles"
 import JumbleSolutionPadTimed from "./JumbleSolutionPadTimed";
-import CorrectAnswer from "./modals/CorrectAnswer";
-import { createLettersArrayWithPosition } from "../utils/StringUtils";
+import { createLettersArrayWithPosition } from "../../utils/StringUtils";
 import ReadinessCheck from "./ReadinessCheck";
+import CorrectAnswer from "../modals/CorrectAnswer";
 
 function JumbleSolutionController(props) {
     const game = props.game

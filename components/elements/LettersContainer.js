@@ -1,6 +1,6 @@
 import { Pressable, Text, View } from "react-native";
-import { styles } from "../styles/styles";
-import { sliceArray } from "../utils/GenericUtils";
+import { styles } from "../../styles/styles";
+import { sliceArray } from "../../utils/GenericUtils";
 
 function LettersContainer(props) {
 

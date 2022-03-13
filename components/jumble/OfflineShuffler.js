@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native"
-import { styles } from "../styles/styles"
-import { randomiseString } from "../utils/StringUtils"
-import { createLettersArrayWithPosition } from "../utils/StringUtils"
-import EnglishLettersOnlyTextInput from "./EnglishLettersOnlyTextInput"
-import ConfirmTarget from "./modals/ConfirmTarget"
-import PressableButton from "./PressableButton"
+import { styles } from "../../styles/styles"
+import { randomiseString } from "../../utils/StringUtils"
+import { createLettersArrayWithPosition } from "../../utils/StringUtils"
+import EnglishLettersOnlyTextInput from "../elements/EnglishLettersOnlyTextInput"
+import ConfirmTarget from "../modals/ConfirmTarget"
+import PressableButton from "../elements/PressableButton"
 
 
 
