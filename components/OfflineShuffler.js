@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { ImageBackground, Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native"
-import imageDictionary from "../assets/images"
+import { Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native"
 import { styles } from "../styles/styles"
 import { randomiseString } from "../utils/StringUtils"
 import { createLettersArrayWithPosition } from "../utils/StringUtils"
@@ -48,45 +47,33 @@ function OfflineShuffler(props) {
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
-
-
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <ImageBackground
-                    source={imageDictionary.createBackground}
-                    style={{ width: '100%', height: '100%' }}
-                    resizeMethod="resize">
-
-                    <View style={styles.createJumbleContainer}>
-                        {!confirmed &&
-                            <View>
-                                <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
-                                    <Text style={{ fontSize: 30, fontWeight: "bold" }}>Word of your choice</Text>
-                                </View>
-                                <View >
-                                    <EnglishLettersOnlyTextInput
-                                        fontWeight={"bold"}
-                                        upperCaseOnly={true}
-                                        style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                                        onTextChange={(text) => setTargetWord(() => text)}
-                                        editable={!confirmed}
-                                        value={targetWord}
-                                        maxLength={20}
-                                    />
-                                </View>
-                                <View>
-                                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} disabled={targetWord === ''} buttonSize="medium"
-                                        handlerFunction={confirmHandler} buttonLabel={'Set Target'} />
-                                </View>
+                <View style={styles.createJumbleContainer}>
+                    {!confirmed &&
+                        <View>
+                            <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
+                                <Text style={{ fontSize: 30, fontWeight: "bold" }}>Word of your choice</Text>
                             </View>
-                        }
-
-
-                        {confirmed && <ConfirmTarget frame={targetWordFrame} modalVisibleProp={true} onRejectTarget={rejectHandler} onConfirmTarget={confirmTargetHandler} />}
-                    </View>
-
-                </ImageBackground>
+                            <View >
+                                <EnglishLettersOnlyTextInput
+                                    fontWeight={"bold"}
+                                    upperCaseOnly={true}
+                                    style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
+                                    onTextChange={(text) => setTargetWord(() => text)}
+                                    editable={!confirmed}
+                                    value={targetWord}
+                                    maxLength={20}
+                                />
+                            </View>
+                            <View>
+                                <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} disabled={targetWord === ''} buttonSize="medium"
+                                    handlerFunction={confirmHandler} buttonLabel={'Set Target'} />
+                            </View>
+                        </View>
+                    }
+                    {confirmed && <ConfirmTarget frame={targetWordFrame} modalVisibleProp={true} onRejectTarget={rejectHandler} onConfirmTarget={confirmTargetHandler} />}
+                </View>
             </TouchableWithoutFeedback>
-
         </KeyboardAvoidingView >
     )
 }

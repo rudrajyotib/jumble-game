@@ -14,7 +14,7 @@ function OnButtonPress() {
 
 function HomeScreen(props) {
   const [clickCount, setClickCount] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   const [startVisible, setStartVisible] = useState(false);
   const [frame, setFrame] = useState(createLettersArrayWithPosition("INTERNATIONALIZATION"));
 

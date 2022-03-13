@@ -8,7 +8,7 @@ export const styles = StyleSheet.create(
         },
         countdownTimerContainer: {
             flex: 1,
-            //  backgroundColor: "white",
+            backgroundColor: "#ffffcc",
             //  justifyContent: "center",
             justifyContent: "flex-end",
             alignItems: "center",
