@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Modal, Text, View } from "react-native"
 import { styles } from "../../styles/styles";
-import LettersContainer from "../LettersContainer";
-import PressableButton from "../PressableButton";
+import LettersContainer from "../elements/LettersContainer";
+import PressableButton from "../elements/PressableButton";
 import { modalStyles } from "./styles/ModalStyles";
 
 function CorrectAnswer(props) {

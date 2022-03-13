@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { View } from "react-native";
-import SolutionPad from "../../components/JumbleSolutionPadTimed";
-import { styles } from "../../styles/styles";
-import { JumbleController } from "../../utils/JumbleController";
-import GameOver from "../../components/GameOver";
-import JumbleSolutionController from "../../components/JumbleSolutionController";
+import { useState } from "react"
+import { View } from "react-native"
+import { styles } from "../../styles/styles"
+import { JumbleController } from "../../utils/JumbleController"
+import GameOver from "./GameOver"
+import JumbleSolutionController from "../jumble/JumbleSolutionController"
 
+function SolutionPad(props) {
 
-function SolveJumble({ route, navigation }) {
-
-    const { game } = route.params
+    const game = props.game
     const [gameOn, setGameOn] = useState(true)
     const [result, setResult] = useState('')
 
@@ -30,9 +28,7 @@ function SolveJumble({ route, navigation }) {
     }
 
     function onContinueGameOver() {
-        navigation.navigate('CreateJumble', {
-            result: 'failed'
-        })
+        props.onGameOver(result)
     }
 
     function onSuccessHandler() {
@@ -40,12 +36,8 @@ function SolveJumble({ route, navigation }) {
             return
         }
         setResult(() => 'success')
-        setGameOn(() => false)
+        setGameOn(false)
 
-        // navigation.navigate('GameOver', {
-        //     result: 'success'
-        // })
-        //result = 'success'
     }
 
     const jumbleController = new JumbleController(game.question, game.answer)
@@ -60,12 +52,13 @@ function SolveJumble({ route, navigation }) {
 
 
     return (
-        <View style={styles.parentContainer}>
+        <View style={{ ...styles.parentContainer, flex: 1 }}>
             {gameContent}
         </View>
     );
 
+
+
 }
 
-
-export default SolveJumble
+export default SolutionPad

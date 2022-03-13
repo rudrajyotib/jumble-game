@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, Modal, Pressable } from 'react-native';
-import LettersContainer from '../../components/LettersContainer';
+import LettersContainer from '../../components/elements/LettersContainer';
 import ReadyCheck from '../../components/modals/ReadyCheck';
 import { createLettersArrayWithPosition } from '../../utils/StringUtils';
 
@@ -14,7 +14,7 @@ function OnButtonPress() {
 
 function HomeScreen(props) {
   const [clickCount, setClickCount] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   const [startVisible, setStartVisible] = useState(false);
   const [frame, setFrame] = useState(createLettersArrayWithPosition("INTERNATIONALIZATION"));
 

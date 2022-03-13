@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { View } from "react-native";
-import LettersContainer from "./LettersContainer";
-import PressableButton from "./PressableButton";
-import { styles } from "../styles/styles"
+import PressableButton from "../elements/PressableButton";
+import { styles } from "../../styles/styles"
 import CountDown from "react-native-countdown-component";
+import LettersContainer from "../elements/LettersContainer";
 
 
 
