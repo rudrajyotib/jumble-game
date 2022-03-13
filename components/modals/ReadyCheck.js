@@ -18,7 +18,7 @@ function ReadyCheck(props) {
 
                 }}>
                 <View style={{ ...modalStyles.modalViewContainer }}>
-                    <View style={{ ...modalStyles.modalBodyContainer }}>
+                    <View style={{ ...modalStyles.modalBodyContainer, width: "100%" }}>
                         <View >
                             {/* <Text style={{ ...styles.modalText, ...styles.textStyle }}>You have set target</Text> */}
                             <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 20, padding: 20 }}>
@@ -26,7 +26,7 @@ function ReadyCheck(props) {
                             </View>
 
                             <View style={{ paddingTop: 30 }}>
-                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "space-between" } }}>
+                                <View style={{ ...styles.horizontalContainer, ...{ justifyContent: "center" } }}>
                                     <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="medium" disabled={false} handlerFunction={() => {
                                         props.onStart()
                                         setModalVisible(false)
