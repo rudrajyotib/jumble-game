@@ -17,10 +17,8 @@ export default function App() {
       <Stack.Navigator initialRouteName='GameScreen' screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name="CreateJumble" component={CreateJumble} />
         <Stack.Screen name="TestWindow" component={HomeScreen} />
         <Stack.Screen name="GameMode" component={GameMode} />
-        <Stack.Screen name="SolveJumble" component={SolveJumble} />
         <Stack.Screen name="GameScreen" component={GameScreen} />
       </Stack.Navigator>
     </NavigationContainer>
