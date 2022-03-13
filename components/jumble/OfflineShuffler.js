@@ -59,7 +59,7 @@ function OfflineShuffler(props) {
                                     fontWeight={"bold"}
                                     upperCaseOnly={true}
                                     style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                                    onTextChange={(text) => setTargetWord(() => text)}
+                                    onTextChange={(text) => setTargetWord(text)}
                                     editable={!confirmed}
                                     value={targetWord}
                                     maxLength={20}

@@ -4,7 +4,7 @@ import { TextInput } from "react-native";
 function EnglishLettersOnlyTextInput(props) {
 
 
-    const [userInput, setUserInput] = useState(props.value);
+    const [userInput, setUserInput] = useState('');
     const upperCaseOnly = props.upperCaseOnly === true ? true : false
     let matcherExpression = /[^a-zA-Z]/ig
     if (upperCaseOnly === true) {
@@ -31,7 +31,7 @@ function EnglishLettersOnlyTextInput(props) {
             onChangeText={changeHandler}
             autoCapitalize={"characters"}
             keyboardAppearance="default"
-            value={props.value}
+            value={userInput}
             editable={props.editable}
             maxLength={props.maxLength}
         />
