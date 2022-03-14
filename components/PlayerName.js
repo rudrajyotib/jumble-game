@@ -19,7 +19,7 @@ function PlayerName(props) {
                     onTextChange={props.onTextChange}
                     editable={true}
                     //value={''}
-                    maxLength={20}
+                    maxLength={10}
                 />
             </View>
         </View>

@@ -33,7 +33,7 @@ function DualPlayerMode(props) {
                             <PressableButton
                                 handlerFunction={proceedToGameHandler}
                                 style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
-                                disabled={false}
+                                disabled={!(('' !== player1) && ('' !== player2))}
                                 buttonSize="medium"
                                 buttonLabel="Proceed to Game" />
                         </View>
