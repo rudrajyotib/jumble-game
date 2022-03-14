@@ -4,7 +4,10 @@ import { styles } from "../../styles/styles"
 
 function GameScreen({ route, navigation }) {
 
-    return (<View style={styles.parentContainer}><GamePad /></View>)
+    const gameMode = route.params
+
+
+    return (<View style={styles.parentContainer}><GamePad players={gameMode.playMode.players} /></View>)
 
 }
 

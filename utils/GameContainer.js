@@ -4,6 +4,7 @@ export class GameContainer {
         this.question = question
         this.answer = answer
         this.gameType = gameType
+        this.scores = [0, 0]
     }
 }
 

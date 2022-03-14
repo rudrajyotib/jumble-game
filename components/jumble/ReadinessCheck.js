@@ -6,7 +6,11 @@ function ReadinessCheck(props) {
 
     return (<View style={{ flex: 1, justifyContent: "center" }}>
         <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Press Solve when you are ready. Good luck.</Text>
+            {
+                ((props.name) && ('' !== props.name)) &&
+                <Text style={{ fontSize: 30, fontWeight: "bold" }}>Hello {props.name}</Text>
+            }
+            <Text style={{ fontSize: 20, fontWeight: "normal" }}>Proceed to solve when you are ready. Good luck.</Text>
         </View>
         <PressableButton
             style={{ ...styles.buttonCard, ...styles.buttonPrimary, paddingHorizontal: 50 }}

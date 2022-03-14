@@ -17,7 +17,7 @@ function JumbleSolutionController(props) {
 
     let jumbleAnswerArea = <View></View>
     if ('await' === gameState) {
-        jumbleAnswerArea = <ReadinessCheck onStart={() => {
+        jumbleAnswerArea = <ReadinessCheck name={props.name} onStart={() => {
             setGameState('on')
         }} />
     }

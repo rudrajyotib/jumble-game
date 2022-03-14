@@ -2,7 +2,7 @@ import OfflineShuffler from "./OfflineShuffler";
 
 function JumbleQuestionController(props) {
     return (
-        <OfflineShuffler onStart={(targetWord, jumbledWord) => {
+        <OfflineShuffler name={props.name} onStart={(targetWord, jumbledWord) => {
             props.onStart(targetWord, jumbledWord)
         }} />
     )

@@ -5,7 +5,7 @@ function GameMode({ route, navigation }) {
 
     function dualPlayerContinue(player1, player2) {
         navigation.navigate(
-            'CreateJumble',
+            'GameScreen',
             {
                 playMode: {
                     player_mode: "dual",

@@ -12,7 +12,7 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='GameScreen' screenOptions={{
+      <Stack.Navigator initialRouteName='GameMode' screenOptions={{
         headerShown: false
       }}>
         <Stack.Screen name="TestWindow" component={HomeScreen} />

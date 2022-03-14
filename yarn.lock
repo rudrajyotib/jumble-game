@@ -4553,6 +4553,11 @@
     "prop-types" "^15.5.8"
     "sprintf-js" "^1.1.1"
 
+"react-native-hide-with-keyboard@^1.2.1":
+  "integrity" "sha512-O3aI0TkfHLaWO3bjO8bDXgOZ/R/K+Ca8CaXOyHJT71eQlyp2CnycUIa/qHUGkXbVpqjt0hZC7k+MUAer82UOaQ=="
+  "resolved" "https://tr1.jfrog.io/tr1/api/npm/npm/react-native-hide-with-keyboard/-/react-native-hide-with-keyboard-1.2.1.tgz"
+  "version" "1.2.1"
+
 "react-native-safe-area-context@>= 3.0.0", "react-native-safe-area-context@3.3.2":
   "integrity" "sha512-yOwiiPJ1rk+/nfK13eafbpW6sKW0jOnsRem2C1LPJjM3tfTof6hlvV5eWHATye3XOpu2cJ7N+HdkUvUDGwFD2Q=="
   "resolved" "https://tr1.jfrog.io/tr1/api/npm/npm/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz"

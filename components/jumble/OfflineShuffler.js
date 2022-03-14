@@ -52,7 +52,12 @@ function OfflineShuffler(props) {
                     {!confirmed &&
                         <View>
                             <View style={{ backgroundColor: "orange", opacity: 0.9, alignItems: "center", marginBottom: 40, padding: 20 }}>
-                                <Text style={{ fontSize: 30, fontWeight: "bold" }}>Word of your choice</Text>
+                                {
+                                    ((props.name) && ('' !== props.name)) &&
+
+                                    <Text style={{ fontSize: 30, fontWeight: "bold" }}>Hello {props.name}</Text>
+                                }
+                                <Text style={{ fontSize: 20, fontWeight: "normal" }}>Set word of your choice</Text>
                             </View>
                             <View >
                                 <EnglishLettersOnlyTextInput
