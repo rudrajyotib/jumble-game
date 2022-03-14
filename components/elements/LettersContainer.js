@@ -4,7 +4,13 @@ import { sliceArray } from "../../utils/GenericUtils";
 
 function LettersContainer(props) {
 
-    const slicedInput = sliceArray(props.lettersFrame, props.maxRowLength)
+    let maxRowLength = props.maxRowLength
+    let lastRowLength = props.lettersFrame.length % maxRowLength
+    if (lastRowLength == 1 || lastRowLength == 2) {
+        maxRowLength = maxRowLength - 1
+    }
+
+    const slicedInput = sliceArray(props.lettersFrame, maxRowLength)
 
 
     return (
