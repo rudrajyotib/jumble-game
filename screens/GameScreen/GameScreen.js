@@ -6,6 +6,10 @@ function GameScreen({ route, navigation }) {
 
     const gameMode = route.params
 
+    navigation.addListener('beforeRemove', (evt) => {
+        evt.preventDefault()
+    })
+
 
     return (<View style={styles.parentContainer}><GamePad players={gameMode.playMode.players} /></View>)
 

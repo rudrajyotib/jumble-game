@@ -17,7 +17,7 @@ export default function App() {
       }}>
         <Stack.Screen name="TestWindow" component={HomeScreen} />
         <Stack.Screen name="GameMode" component={GameMode} />
-        <Stack.Screen name="GameScreen" component={GameScreen} />
+        <Stack.Screen name="GameScreen" component={GameScreen} options={{ gestureEnabled: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
