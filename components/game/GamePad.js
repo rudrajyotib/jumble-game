@@ -6,6 +6,7 @@ import imageDictionary from "../../assets/images";
 import { styles } from "../../styles/styles"
 import { GameConstants } from "../../utils/Constants";
 import { GameContainer } from "../../utils/GameContainer";
+import PressableButton from "../elements/PressableButton";
 import JumbleQuestionController from "../jumble/JumbleQuestionController";
 import ScoreSummary from "./ScoreSummary";
 import SolutionPad from "./SolutionPad";
@@ -13,6 +14,7 @@ import SolutionPad from "./SolutionPad";
 function GamePad(props) {
 
     const players = props.players
+    const backHandler = props.onBack
 
     const [gameStage, setGameStage] = useState('question');
     const [gameContainer, setGameContainer] = useState(new GameContainer(GameConstants.GAME_TYPE_JUMBLE, '', ''));
@@ -38,6 +40,13 @@ function GamePad(props) {
                         })
                         setGameStage('answer');
                     }} />
+                    <HideWithKeyboard>
+                        <View style={{ paddingBottom: 40, alignItems: "flex-end" }}>
+                            <PressableButton size="small" buttonLabel="End Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
+                                backHandler()
+                            }} />
+                        </View>
+                    </HideWithKeyboard>
                 </View>
             </KeyboardAvoidingView>
     } else if ('answer' === gameStage) {
