@@ -13,6 +13,9 @@ function JumbleSolutionController(props) {
     const gameResultHandler = (result) => {
         setResult(() => result)
         setGameState(() => 'over');
+        if ('success' === result) {
+            props.onSuccess()
+        }
     }
 
     let jumbleAnswerArea = <View></View>
