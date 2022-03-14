@@ -36,6 +36,12 @@ export class JumbleController {
         }
     }
 
+    reshuffle() {
+        this.undoAll()
+        this.jumbledWord = randomiseString(this.jumbledWord)
+        this.questionFrame = createLettersArrayWithPosition(this.jumbledWord)
+    }
+
     answerReached() {
         if (this.lastAnswerPoint !== (this.jumbledWord.length - 1)) {
             return false

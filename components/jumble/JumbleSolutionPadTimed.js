@@ -46,6 +46,11 @@ function JumbleSolutionPadTimed(props) {
         setAnswerLetters([...game.answerFrame]);
     }
 
+    function reshuffleHandler() {
+        game.reshuffle()
+        setQuestionLetters([...game.questionFrame]);
+        setAnswerLetters([...game.answerFrame]);
+    }
 
 
     return (
@@ -65,10 +70,15 @@ function JumbleSolutionPadTimed(props) {
                 />
             </View>
             <View style={styles.questionContainer}>
-                <LettersContainer
-                    disableCheckFunction={(letter) => letter.value.trim() === ''}
-                    questionButtonPressHandler={questionButtonPressHandler}
-                    lettersFrame={questionLetters} keyPrefix={'Q'} maxRowLength={8} />
+                <View style={{ flex: 6, justifyContent: "center" }}>
+                    <LettersContainer
+                        disableCheckFunction={(letter) => letter.value.trim() === ''}
+                        questionButtonPressHandler={questionButtonPressHandler}
+                        lettersFrame={questionLetters} keyPrefix={'Q'} maxRowLength={8} />
+                </View>
+                <View style={{ alignItems: "flex-end", flex: 2 }}>
+                    <PressableButton style={{ ...styles.buttonCard, ...styles.buttonLowPriority }} buttonSize="small" disabled={false} handlerFunction={reshuffleHandler} buttonLabel={'shuffle'} />
+                </View>
             </View>
             <View style={{ ...styles.answerContainer }}>
                 <View style={{ flex: 3, justifyContent: "center" }}>
