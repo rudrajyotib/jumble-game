@@ -46,7 +46,7 @@ function OfflineShuffler(props) {
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
+        <View style={{ ...styles.parentContainer }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.createJumbleContainer}>
                     {!confirmed &&
@@ -79,7 +79,7 @@ function OfflineShuffler(props) {
                     {confirmed && <ConfirmTarget frame={targetWordFrame} modalVisibleProp={true} onRejectTarget={rejectHandler} onConfirmTarget={confirmTargetHandler} />}
                 </View>
             </TouchableWithoutFeedback>
-        </KeyboardAvoidingView >
+        </View>
     )
 }
 
