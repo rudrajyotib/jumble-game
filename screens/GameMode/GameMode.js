@@ -1,9 +1,17 @@
 import { View } from "react-native"
+import { useDispatch } from "react-redux"
 import DualPlayerMode from "../../components/game/DualPlayerMode"
+import { setPlayers } from "../../store/data/GameStateSlice"
 
 function GameMode({ route, navigation }) {
 
+
+
+    // const dispatch = useDispatch(state => state.gameState.players)
+    const dispatch = useDispatch()
+
     function dualPlayerContinue(player1, player2) {
+        dispatch(setPlayers({ players: [player1, player2] }))
         navigation.navigate(
             'GameScreen',
             {
