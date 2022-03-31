@@ -13,7 +13,8 @@ import SolutionPad from "./SolutionPad";
 
 function GamePad(props) {
 
-    const players = props.players
+    const gameState = props.gameState
+    // const players = gameState
     const backHandler = props.onBack
 
     const [gameStage, setGameStage] = useState('question');
@@ -22,14 +23,14 @@ function GamePad(props) {
     const [solver, setSolver] = useState(1);
 
     let gameContent = <View />
-    if ('question' === gameStage) {
+    if ('question' === gameStage && 'offline' === gameState.mode) {
         gameContent =
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
                 <View style={{ flex: 1, paddingTop: 50 }}>
-                    <HideWithKeyboard>
-                        <ScoreSummary players={players} gameContainer={gameContainer} />
+                    < HideWithKeyboard>
+                        <ScoreSummary players={gameState.players} gameContainer={gameContainer} />
                     </HideWithKeyboard>
-                    <JumbleQuestionController name={players[challenger]} onStart={(targetWord, jumbledWord) => {
+                    <JumbleQuestionController name={gameState.players[challenger]} onStart={(targetWord, jumbledWord) => {
                         //setGameContainer(new GameContainer(GameConstants.GAME_TYPE_JUMBLE, jumbledWord, targetWord))
                         setGameContainer((gameContainerCurrent) => {
                             let gameContainerNew = { ...gameContainerCurrent }
@@ -42,7 +43,7 @@ function GamePad(props) {
                     }} />
                     <HideWithKeyboard>
                         <View style={{ paddingBottom: 40, alignItems: "flex-end" }}>
-                            <PressableButton size="small" buttonLabel="End Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
+                            <PressableButton size="small" buttonLabel="Quit Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
                                 backHandler()
                             }} />
                         </View>
@@ -50,7 +51,7 @@ function GamePad(props) {
                 </View>
             </KeyboardAvoidingView>
     } else if ('answer' === gameStage) {
-        gameContent = <SolutionPad name={players[solver]} game={gameContainer} onGameOver={(result) => {
+        gameContent = <SolutionPad name={gameState.players[solver]} game={gameContainer} onGameOver={(result) => {
 
             setGameContainer((gameContainerCurrent) => {
                 let gameContainerNew = { ...gameContainerCurrent }
