@@ -23,13 +23,13 @@ function GamePad(props) {
     const [solver, setSolver] = useState(1);
 
     let gameContent = <View />
-    if ('question' === gameStage) {
+    if ('question' === gameStage && 'offline' === gameState.mode) {
         gameContent =
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
                 <View style={{ flex: 1, paddingTop: 50 }}>
-                    {'offline' === gameState.mode && < HideWithKeyboard>
+                    < HideWithKeyboard>
                         <ScoreSummary players={gameState.players} gameContainer={gameContainer} />
-                    </HideWithKeyboard>}
+                    </HideWithKeyboard>
                     <JumbleQuestionController name={gameState.players[challenger]} onStart={(targetWord, jumbledWord) => {
                         //setGameContainer(new GameContainer(GameConstants.GAME_TYPE_JUMBLE, jumbledWord, targetWord))
                         setGameContainer((gameContainerCurrent) => {
@@ -43,7 +43,7 @@ function GamePad(props) {
                     }} />
                     <HideWithKeyboard>
                         <View style={{ paddingBottom: 40, alignItems: "flex-end" }}>
-                            <PressableButton size="small" buttonLabel="End Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
+                            <PressableButton size="small" buttonLabel="Quit Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
                                 backHandler()
                             }} />
                         </View>

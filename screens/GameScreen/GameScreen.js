@@ -18,7 +18,7 @@ function GameScreen({ route, navigation }) {
             [
                 { text: "Don't leave", style: 'cancel', onPress: () => { } },
                 {
-                    text: 'End Game',
+                    text: 'Quit Game',
                     style: 'destructive',
                     // If the user confirmed, then we dispatch the action we blocked earlier
                     // This will continue the action that had triggered the removal of the screen
