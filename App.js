@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
+import ChallengeScreen from './screens/Challenge/ChallengeScreen';
 import GameMode from './screens/GameMode/GameMode';
 import GameScreen from './screens/GameScreen/GameScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
@@ -20,6 +21,7 @@ export default function App() {
           <Stack.Screen name="TestWindow" component={HomeScreen} />
           <Stack.Screen name="GameMode" component={GameMode} />
           <Stack.Screen name="GameScreen" component={GameScreen} options={{ gestureEnabled: false }} />
+          <Stack.Screen name="Challenges" component={ChallengeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

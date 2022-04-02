@@ -11,7 +11,7 @@ import JumbleQuestionController from "../jumble/JumbleQuestionController";
 import ScoreSummary from "./ScoreSummary";
 import SolutionPad from "./SolutionPad";
 
-function GamePad(props) {
+function OfflineGamePad(props) {
 
     const gameState = props.gameState
     // const players = gameState
@@ -81,4 +81,4 @@ function GamePad(props) {
 
 }
 
-export default GamePad
+export default OfflineGamePad

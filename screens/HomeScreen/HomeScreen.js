@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, Modal, Pressable } from 'react-native';
+import { useDispatch } from 'react-redux';
 import LettersContainer from '../../components/elements/LettersContainer';
 import ReadyCheck from '../../components/modals/ReadyCheck';
+import { setGameModeOnline } from '../../store/data/GameStateSlice';
 import { createLettersArrayWithPosition } from '../../utils/StringUtils';
 
 
@@ -12,7 +14,9 @@ function OnButtonPress() {
 }
 
 
-function HomeScreen(props) {
+function HomeScreen({ route, navigation }) {
+
+
   const [clickCount, setClickCount] = useState(0);
   const [modalVisible, setModalVisible] = useState(true);
   const [startVisible, setStartVisible] = useState(false);
@@ -26,46 +30,17 @@ function HomeScreen(props) {
       <Button title="Hello World2" paddingTop="10" onPress={OnButtonPress} />
       <Text>You pressed me {clickCount} time(s)</Text>
       <Button color="#f194ff" title="Up Count" onPress={() => setClickCount(clickCount + 1)} />
-      <Button color="#f194ff" title="Show Modal" onPress={() => setModalVisible(!modalVisible)} />
       <Button color="#f194ff" title="Show Start" onPress={() => setStartVisible(!startVisible)} />
+      <Button color="#f194ff" title="Show Challemges" onPress={() => {
+        navigation.navigate('Challenges', {})
+      }
+      } />
       <TextInput style={styles.input} />
 
       {
         startVisible && <ReadyCheck onStart={() => setStartVisible(!startVisible)} />
       }
-      <View>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={{ ...styles.modalText, ...styles.textStyle }}>You have set</Text>
-              <LettersContainer
-                lettersFrame={frame}
-                keyPrefix={'Q'}
-                maxRowLength={8}
 
-                disableCheckFunction={() => { }}
-                questionButtonPressHandler={() => { }}
-              />
-              <View style={{ paddingTop: 30 }}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </Modal>
-      </View>
 
     </View>
   );

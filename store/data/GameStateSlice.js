@@ -11,6 +11,9 @@ export const GameStateSlice = createSlice(
             setPlayers: (state, action) => {
                 state.players = action.payload.players
             },
+            setGameModeOnline: state => {
+                state.mode = 'online'
+            },
             resetGame: state => {
                 state.players = []
             }
@@ -19,5 +22,5 @@ export const GameStateSlice = createSlice(
 )
 
 
-export const { setPlayers, resetGame } = GameStateSlice.actions
+export const { setPlayers, resetGame, setGameModeOnline } = GameStateSlice.actions
 export const gameStateReducer = GameStateSlice.reducer
