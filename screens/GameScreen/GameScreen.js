@@ -48,12 +48,11 @@ function GameScreen({ route, navigation }) {
     }
     if ('online' === gameState.mode) {
         gameScreenContent = <OnlineGamePad
-            question='someone'
             gameOverHandler={(result) => {
                 console.log('result on game over::' + result)
                 navigation.navigate('Challenges', {})
             }}
-            gameContainer={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(gameMode.question.question), gameMode.question.question)}
+            gameContainer={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(gameMode.question.word), gameMode.question.word)}
             gameState={gameState} onBack={() => {
                 navigation.navigate('GameMode')
             }} />

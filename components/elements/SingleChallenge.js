@@ -6,8 +6,8 @@ import PressableButton from "./PressableButton";
 function SingleChallenge(props) {
 
 
-    return (<View style={{ ...styles.card }}>
-        <View style={{ flexDirection: "row" }}>
+    return (<View style={{ ...styles.card, backgroundColor: "orange" }}>
+        <View style={{ flexDirection: "row", backgroundColor: "orange" }}>
             <View style={{ flex: 8 }}>
                 <View style={{ flexDirection: "column", justifyContent: "center", flex: 1, alignContent: "center", paddingLeft: 20 }}>
                     <View style={{ flexDirection: "row" }}><Text>Challenged by </Text><Text style={{ fontWeight: "bold" }}>{props.challenger}</Text></View>
@@ -17,7 +17,7 @@ function SingleChallenge(props) {
             <View style={{ flex: 6 }}>
                 <View>
                     <PressableButton buttonSize="small" buttonLabel="Solve"
-                        style={{ ...styles.buttonCard, ...styles.buttonPrimary, ...styles.sma }} handlerFunction={() => { props.solveHandler("SOMETHING") }} />
+                        style={{ ...styles.buttonCard, ...styles.buttonPrimary, ...styles.sma }} handlerFunction={() => { props.solveHandler(props.question) }} />
                 </View>
             </View>
         </View>

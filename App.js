@@ -15,7 +15,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='GameMode' screenOptions={{
+        <Stack.Navigator initialRouteName='TestWindow' screenOptions={{
           headerShown: false
         }}>
           <Stack.Screen name="TestWindow" component={HomeScreen} />
