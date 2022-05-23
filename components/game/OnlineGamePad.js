@@ -6,14 +6,23 @@ import { ImageBackground } from "react-native";
 import HideWithKeyboard from "react-native-hide-with-keyboard";
 import imageDictionary from "../../assets/images";
 import { styles } from "../../styles/styles"
+import { markChallengeAttempted } from "../../services/ChallengeService";
 
 
 function OnlineGamePad(props) {
 
 
+    function attemptHandler() {
+        markChallengeAttempted(props.duelId)
+    }
+
+
     var gameContent = <SolutionPad
-        name="Riju"
+        name={props.userName}
         game={props.gameContainer}
+        duelId={props.duelId}
+        gameMode='online'
+        attemptHandler={attemptHandler}
         onGameOver={props.gameOverHandler} />
 
     return (

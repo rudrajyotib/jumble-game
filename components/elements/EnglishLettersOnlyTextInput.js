@@ -6,6 +6,7 @@ function EnglishLettersOnlyTextInput(props) {
 
     const [userInput, setUserInput] = useState('');
     const upperCaseOnly = props.upperCaseOnly === true ? true : false
+    const freeText = props.freeText === true ? true : false
     let matcherExpression = /[^a-zA-Z]/ig
     if (upperCaseOnly === true) {
         matcherExpression = /[^A-Z]/ig
@@ -14,7 +15,10 @@ function EnglishLettersOnlyTextInput(props) {
 
     function changeHandler(text) {
         let updatedText = upperCaseOnly ? text.toUpperCase() : text
-        let val = updatedText.replace(matcherExpression, '');
+        let val = updatedText
+        if (!freeText) {
+            val = updatedText.replace(matcherExpression, '');
+        }
         setUserInput(() => {
             props.onTextChange(val)
             return val
@@ -29,11 +33,12 @@ function EnglishLettersOnlyTextInput(props) {
             // onBlur={blurHandler}
             style={{ ...props.style, fontWeight: props.fontWeight, fontSize: 25 }}
             onChangeText={changeHandler}
-            autoCapitalize={"characters"}
+            autoCapitalize={props.upperCaseOnly === true ? "characters" : "none"}
             keyboardAppearance="default"
             value={userInput}
             editable={props.editable}
             maxLength={props.maxLength}
+            secureTextEntry={props.password}
         />
     )
 }

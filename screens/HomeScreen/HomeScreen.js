@@ -35,6 +35,14 @@ function HomeScreen({ route, navigation }) {
         navigation.navigate('Challenges', {})
       }
       } />
+      <Button color="#f194ff" title="Select game mode" onPress={() => {
+        navigation.navigate('GameMode', {})
+      }
+      } />
+      <Button color="#f194ff" title="Show Login" onPress={() => {
+        navigation.navigate('Login', {})
+      }
+      } />
       <TextInput style={styles.input} />
 
       {

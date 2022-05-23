@@ -2,6 +2,7 @@ import { Alert, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import OfflineGamePad from "../../components/game/OfflineGamePad"
 import OnlineGamePad from "../../components/game/OnlineGamePad"
+import { markChallengeFailure, markChallengeSuccess } from "../../services/ChallengeService"
 import { resetGame } from "../../store/data/GameStateSlice"
 import { styles } from "../../styles/styles"
 import { GameConstants } from "../../utils/Constants"
@@ -47,11 +48,21 @@ function GameScreen({ route, navigation }) {
         }} />
     }
     if ('online' === gameState.mode) {
+
+        console.log('Game state as found::' + JSON.stringify(gameState))
+
         gameScreenContent = <OnlineGamePad
             gameOverHandler={(result) => {
-                console.log('result on game over::' + result)
+                console.log('result on game over::' + result + "::for game::" + JSON.stringify(gameMode.question))
+                if ('success' === result) {
+                    markChallengeSuccess(gameMode.question.duelId)
+                } else if ('failed' === result) {
+                    markChallengeFailure(gameMode.question.duelId)
+                }
                 navigation.navigate('Challenges', {})
             }}
+            duelId={gameMode.question.duelId}
+            userName={gameState.authenticatedUser.userName}
             gameContainer={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(gameMode.question.word), gameMode.question.word)}
             gameState={gameState} onBack={() => {
                 navigation.navigate('GameMode')
