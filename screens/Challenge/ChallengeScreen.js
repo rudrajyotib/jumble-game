@@ -28,6 +28,9 @@ function ChallengeScreen({ route, navigation }) {
                         'GameScreen', {
                         action: 'answer',
                         playMode: { player_mode: "online" },
+                        duelId: duelId,
+                        challengeId: challengeId,
+                        userName: gameState.authenticatedUser.userName,
                         question: {
                             type: 'jumble',
                             word: result.question.question.content.word, duelId: duelId, challengeId: challengeId
@@ -46,7 +49,7 @@ function ChallengeScreen({ route, navigation }) {
             playMode: { player_mode: "online" },
             duelId: duelId,
             userId: userId,
-            playerName: 'somePlayer'
+            playerName: gameState.authenticatedUser.userName
         })
     }
 

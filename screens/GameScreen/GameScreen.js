@@ -48,34 +48,34 @@ function GameScreen({ route, navigation }) {
         }} />
     }
     if ('online' === gameState.mode) {
-        if ('answer' === gameMode.action) {
-            gameScreenContent = <OnlineGamePad
-                gameOverHandler={(result) => {
-                    if ('success' === result) {
-                        markChallengeSuccess(gameMode.question.duelId)
-                    } else if ('failed' === result) {
-                        markChallengeFailure(gameMode.question.duelId)
-                    }
-                    navigation.navigate('Challenges', {})
-                }}
-                duelId={gameMode.question.duelId}
-                userName={gameState.authenticatedUser.userName}
-                gameContainer={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(gameMode.question.word), gameMode.question.word)}
-                gameState={gameState}
-                onBack={() => {
-                    navigation.navigate('GameMode')
-                }} />
-        } else if ('question' === gameMode.action) {
-            gameScreenContent = <QuestionPad
-                showScore={false}
-                playerName={gameMode.playerName}
-                onQuestionSet={(targetWord, jumbledWord) => {
-                    console.log('targetWord is::' + targetWord)
-                }}
-                onBack={() => {
-                    navigation.navigate('Challenges', {})
-                }} />
-        }
+        gameScreenContent = <OnlineGamePad
+            onFinishNavigator={() => { navigation.navigate('Challenges', {}) }}
+            currentGame={gameMode}
+            onBack={() => {
+                navigation.navigate('Challenges')
+            }}
+            onQuestionSet={(targetWord, jumbledWord) => {
+                console.log('targetWord is::' + targetWord)
+            }} />
+        // if ('answer' === gameMode.action) {
+        //     gameScreenContent = <OnlineGamePad
+        //         onFinishNavigator={() => { navigation.navigate('Challenges', {}) }}
+        //         currentGame={gameMode}
+        //         onBack={() => {
+        //             navigation.navigate('GameMode')
+        //         }} />
+        // } else if ('question' === gameMode.action) {
+        //     gameScreenContent = <OnlineGamePad
+        //         // showScore={false}
+        //         currentGame={gameMode}
+        //         // playerName={gameMode.playerName}
+        //         onQuestionSet={(targetWord, jumbledWord) => {
+        //             console.log('targetWord is::' + targetWord)
+        //         }}
+        //         onBack={() => {
+        //             navigation.navigate('Challenges', {})
+        //         }} />
+        // }
 
     }
 
