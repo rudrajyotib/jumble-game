@@ -16,17 +16,13 @@ function PendingChallenges(props) {
     const [pendingChallengesState, setPendingChallengesState] = useState({ allChallenges: [], loading: true })
 
     useFocusEffect(React.useCallback(() => {
-        console.log('focus effect called')
         getAllChallengesForUser(props.userId)
             .then((challengesList) => {
-                console.log('received response from service::' + JSON.stringify(challengesList))
                 setPendingChallengesState(() => {
                     return { loading: false, allChallenges: challengesList.challenges }
                 })
             })
-            .catch((err) => {
-                console.log('received error from service' + err)
-            })
+            .catch((err) => { })
         // setLoadingQuestions(() => { return false })
         return (() => { })
     }, []))
@@ -35,11 +31,6 @@ function PendingChallenges(props) {
         // console.log("Word received" + JSON.stringify(question))
         props.solveHandler(duelId, challengeId)
     }
-
-    console.log('received userId as::' + props.userId)
-
-    // const allChallenges = await getAllChallengesForUser(props.userId)
-    console.log('received challenges for user::' + JSON.stringify(pendingChallengesState.allChallenges))
 
 
     let gameContent = <View />

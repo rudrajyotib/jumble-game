@@ -14,7 +14,6 @@ function GameScreen({ route, navigation }) {
     const gameMode = route.params
     const gameState = useSelector(state => state.gameState)
     const dispatch = useDispatch()
-    console.log('route is ' + JSON.stringify(gameMode.question))
 
     navigation.addListener('beforeRemove', (evt) => {
         if ('online' === gameState.mode) {
@@ -49,11 +48,8 @@ function GameScreen({ route, navigation }) {
     }
     if ('online' === gameState.mode) {
 
-        console.log('Game state as found::' + JSON.stringify(gameState))
-
         gameScreenContent = <OnlineGamePad
             gameOverHandler={(result) => {
-                console.log('result on game over::' + result + "::for game::" + JSON.stringify(gameMode.question))
                 if ('success' === result) {
                     markChallengeSuccess(gameMode.question.duelId)
                 } else if ('failed' === result) {

@@ -4,10 +4,8 @@ import PendingChallenges from "../../components/game/PendingChallenges";
 import { styles } from "../../styles/styles";
 import { setGameModeOnline } from "../../store/data/GameStateSlice"
 import imageDictionary from "../../assets/images";
-import { GameConstants } from "../../utils/Constants";
-import { useEffect, useState } from "react";
-import { useFocusEffect } from '@react-navigation/native'
-import { getAllChallenges, getChallengeForDuel } from "../../services/ChallengeService";
+import { useState } from "react";
+import { getChallengeForDuel } from "../../services/ChallengeService";
 import React from "react";
 import PressableButton from "../../components/elements/PressableButton";
 import ListOfFriends from "../../components/friends/ListOfFriends";
@@ -26,19 +24,15 @@ function ChallengeScreen({ route, navigation }) {
         getChallengeForDuel(challengeId)
             .then((result) => {
                 if (result.result === 1) {
-                    console.log("Received question in handler from service::" + JSON.stringify(result))
                     navigation.navigate(
                         'GameScreen', { playMode: { player_mode: "online" }, question: { type: 'jumble', word: result.question.question.content.word, duelId: duelId, challengeId: challengeId } }
                     )
                 }
             })
-            .catch((err) => {
-                console.log('error getting question from service' + err)
-            })
+            .catch((err) => { })
 
     }
 
-    console.log('rendering challenge screen')
     dispatch(setGameModeOnline())
     var gameContent = <View></View>
     if ('challenges' === selectedView) {
@@ -51,7 +45,9 @@ function ChallengeScreen({ route, navigation }) {
             </ScrollView>
         }
     } else if ('friends' === selectedView) {
-        gameContent = <ScrollView><ListOfFriends /></ScrollView>
+        gameContent = <ScrollView><ListOfFriends
+            userName={gameState.authenticatedUser.userName}
+            userId={gameState.authenticatedUser.uid} /></ScrollView>
     }
 
     return (<View style={{ ...styles.parentContainer, flex: 1 }}>
@@ -67,15 +63,12 @@ function ChallengeScreen({ route, navigation }) {
                 <View style={{ flex: 1, width: '100%' }}>
                     <View style={{ flex: 1, ...styles.horizontalContainer, ...{ justifyContent: "center" } }}>
                         <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="small" disabled={false} handlerFunction={() => {
-                            console.log('challenges clicked')
                             setSelectedView(() => { return 'challenges' })
                         }} buttonLabel={'Challenges'} />
                         <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="small" disabled={false} handlerFunction={() => {
-                            console.log('friends clicked')
                             setSelectedView(() => { return 'friends' })
                         }} buttonLabel={'Friends'} />
                         <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="small" disabled={false} handlerFunction={() => {
-                            console.log('requests clicked')
                             setSelectedView(() => { return 'requests' })
                         }} buttonLabel={'Requests'} />
                     </View>

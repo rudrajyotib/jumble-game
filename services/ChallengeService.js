@@ -44,11 +44,6 @@ export async function getAllChallengesForUser(userId) {
             challengesList.result = -1
         })
 
-
-
-
-
-    console.log('challengse list::' + JSON.stringify(challengesList))
     return challengesList;
 }
 
@@ -62,25 +57,21 @@ export async function getChallengeForDuel(duelId) {
         challengeQuestion.result = 1
         challengeQuestion.question = response.data
     }
-    console.log('Challenge question response' + JSON.stringify(response.data))
 
     return challengeQuestion;
 }
 
 export async function markChallengeAttempted(duelId) {
-    console.log('attempting challenge' + duelId)
     const response = await updateStatusOfDuelId(duelId, 'attempt')
     return response
 }
 
 export async function markChallengeSuccess(duelId) {
-    console.log('attempting challenge' + duelId)
     const response = await updateStatusOfDuelId(duelId, 'success')
     return response
 }
 
 export async function markChallengeFailure(duelId) {
-    console.log('attempting challenge' + duelId)
     const response = await updateStatusOfDuelId(duelId, 'failure')
     return response
 }

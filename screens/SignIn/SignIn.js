@@ -75,10 +75,7 @@ function SignInScreen({ route, navigation }) {
                 <View>
                     <PressableButton buttonSize="small" buttonLabel="Sign IN"
                         style={{ ...styles.buttonCard, ...styles.buttonPrimary, ...styles.sma }} handlerFunction={() => {
-                            console.log('login pressed::' + userName + '::password::' + password)
                             signIn(userName, password, user => {
-                                console.log("Logged In !!!!")
-                                console.log(JSON.stringify(user))
                                 dispatch(setLoginDetails({
                                     uid: user.user.uid,
                                     email: user.user.email,
@@ -86,16 +83,7 @@ function SignInScreen({ route, navigation }) {
                                 }))
                                 dispatch(setGameModeOnline())
                                 navigation.navigate('Challenges', {})
-                            }, error => {
-                                console.log("LogIn failed")
-                                console.log(JSON.stringify(error))
-                            })
-                            // signInWithEmailAndPassword(auth, userName, password)
-                            //     .then((user) => {
-
-                            //     }).catch((error) => {
-
-                            //     })
+                            }, error => { })
                         }} />
                 </View>
             </View>
