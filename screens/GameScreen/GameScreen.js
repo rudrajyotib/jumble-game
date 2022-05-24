@@ -60,9 +60,11 @@ function GameScreen({ route, navigation }) {
             duelId={gameMode.question.duelId}
             userName={gameState.authenticatedUser.userName}
             gameContainer={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(gameMode.question.word), gameMode.question.word)}
-            gameState={gameState} onBack={() => {
+            gameState={gameState}
+            onBack={() => {
                 navigation.navigate('GameMode')
             }} />
+
     }
 
     return (<View style={styles.parentContainer}>

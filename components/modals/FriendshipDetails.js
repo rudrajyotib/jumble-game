@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Modal, Text, View } from "react-native"
 import { getFriendshipDetails } from "../../services/UserService";
 import { styles } from "../../styles/styles";
-import LettersContainer from "../elements/LettersContainer";
 import PressableButton from "../elements/PressableButton";
 import ScoreSummary from "../game/ScoreSummary";
 import { modalStyles } from "./styles/ModalStyles";
@@ -53,7 +52,7 @@ function FriendshipDetails(props) {
                                     <Text style={{ fontSize: 14 }}>Scorecard                                                 </Text>
                                 </View>
                                 <View style={{ paddingTop: 10 }}>
-                                    <ScoreSummary gameContainer={
+                                    <ScoreSummary scores={friendshipDetails.score} gameContainer={
                                         { scores: friendshipDetails.score }
                                     } players={friendshipDetails.players} />
                                 </View>
@@ -68,6 +67,7 @@ function FriendshipDetails(props) {
                                 }} buttonLabel={'Back'} />
                                 <PressableButton style={{ ...styles.buttonCard, ...styles.buttonPrimary }} buttonSize="small" disabled={false} handlerFunction={() => {
                                     // props.onConfirmTarget()
+                                    props.onAddChallenge(props.duelId, props.userId)
                                     props.onBack()
                                     setModalVisible(() => false)
                                 }} buttonLabel={'set a challenge'} />

@@ -1,14 +1,11 @@
 import { useState } from "react"
-import { View, Text, KeyboardAvoidingView } from "react-native"
+import { View } from "react-native"
 import { ImageBackground } from "react-native";
-import HideWithKeyboard from "react-native-hide-with-keyboard";
 import imageDictionary from "../../assets/images";
 import { styles } from "../../styles/styles"
 import { GameConstants } from "../../utils/Constants";
 import { GameContainer } from "../../utils/GameContainer";
-import PressableButton from "../elements/PressableButton";
-import JumbleQuestionController from "../jumble/JumbleQuestionController";
-import ScoreSummary from "./ScoreSummary";
+import QuestionPad from "../jumble/QuestionPad";
 import SolutionPad from "./SolutionPad";
 
 function OfflineGamePad(props) {
@@ -24,32 +21,27 @@ function OfflineGamePad(props) {
 
     let gameContent = <View />
     if ('question' === gameStage && 'offline' === gameState.mode) {
-        gameContent =
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
-                <View style={{ flex: 1, paddingTop: 50 }}>
-                    < HideWithKeyboard>
-                        <ScoreSummary players={gameState.players} gameContainer={gameContainer} />
-                    </HideWithKeyboard>
-                    <JumbleQuestionController name={gameState.players[challenger]} onStart={(targetWord, jumbledWord) => {
-                        //setGameContainer(new GameContainer(GameConstants.GAME_TYPE_JUMBLE, jumbledWord, targetWord))
-                        setGameContainer((gameContainerCurrent) => {
-                            let gameContainerNew = { ...gameContainerCurrent }
-                            gameContainerNew.question = jumbledWord
-                            gameContainerNew.answer = targetWord
 
-                            return gameContainerNew
-                        })
-                        setGameStage('answer');
-                    }} />
-                    <HideWithKeyboard>
-                        <View style={{ paddingBottom: 40, alignItems: "flex-end" }}>
-                            <PressableButton size="small" buttonLabel="Quit Game" style={{ ...styles.buttonLowPriority, borderWidth: 0 }} handlerFunction={() => {
-                                backHandler()
-                            }} />
-                        </View>
-                    </HideWithKeyboard>
-                </View>
-            </KeyboardAvoidingView>
+        gameContent =
+            <QuestionPad
+                showScore={true}
+                players={gameState.players}
+                scores={gameContainer.scores}
+                playerName={gameState.players[challenger]}
+                onQuestionSet={(targetWord, jumbledWord) => {
+                    setGameContainer((gameContainerCurrent) => {
+                        let gameContainerNew = { ...gameContainerCurrent }
+                        gameContainerNew.question = jumbledWord
+                        gameContainerNew.answer = targetWord
+
+                        return gameContainerNew
+                    })
+                    setGameStage('answer');
+                }}
+                challenger={challenger}
+                onBack={() => {
+                    backHandler()
+                }} />
     } else if ('answer' === gameStage) {
         gameContent = <SolutionPad name={gameState.players[solver]} game={gameContainer} onGameOver={(result) => {
 

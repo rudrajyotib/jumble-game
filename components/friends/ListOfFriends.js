@@ -9,6 +9,10 @@ import FriendshipDetails from "../modals/FriendshipDetails";
 
 function ListOfFriends(props) {
 
+    const addChallengeHandler = (duelId, userId) => {
+        props.onAddChallenge(duelId, userId)
+    }
+
     const [friendList, setFriendList] = useState({ loading: true, friends: [] })
     const [duelDisplay, setDuelDisplay] = useState({ display: false, duelId: '', friendUserId: '', friendName: '' })
     useFocusEffect(React.useCallback(() => {
@@ -62,6 +66,7 @@ function ListOfFriends(props) {
             duelId={duelDisplay.duelId}
             friendUserId={duelDisplay.friendUserId}
             friendName={duelDisplay.friendName}
+            onAddChallenge={addChallengeHandler}
             onBack={() => {
                 setDuelDisplay(() => {
                     return {

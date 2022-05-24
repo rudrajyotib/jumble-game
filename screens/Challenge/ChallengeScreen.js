@@ -1,4 +1,4 @@
-import { ImageBackground, ScrollView, Text, View } from "react-native";
+import { ImageBackground, ScrollView, View } from "react-native";
 import { useDispatch } from "react-redux";
 import PendingChallenges from "../../components/game/PendingChallenges";
 import { styles } from "../../styles/styles";
@@ -30,7 +30,10 @@ function ChallengeScreen({ route, navigation }) {
                 }
             })
             .catch((err) => { })
+    }
 
+    const addChallengeHandler = (duelId, userId) => {
+        console.log('add challenge request received for::duelId::' + duelId + "::for user::" + userId)
     }
 
     dispatch(setGameModeOnline())
@@ -46,6 +49,7 @@ function ChallengeScreen({ route, navigation }) {
         }
     } else if ('friends' === selectedView) {
         gameContent = <ScrollView><ListOfFriends
+            onAddChallenge={addChallengeHandler}
             userName={gameState.authenticatedUser.userName}
             userId={gameState.authenticatedUser.uid} /></ScrollView>
     }

@@ -44,3 +44,20 @@ export async function getFriendshipDetails(duelId) {
         })
     return duelData
 }
+
+export async function isChallengeable(userId, friendUserId) {
+    const duelData = { result: 0 };
+    await axios.get("https://jumble-apis.herokuapp.com/api/user/isChallengeable/" + userId + "/" + friendUserId)
+        .then((response) => {
+            if (200 === response.status) {
+                challengeability = response.data
+                if (challengeability && true === challengeability.challengeable) {
+                    duelData.result = 1
+                }
+            }
+        })
+        .catch(() => {
+            duelData.result = -1
+        })
+    return duelData
+}
