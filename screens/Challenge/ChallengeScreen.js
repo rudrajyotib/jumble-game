@@ -25,7 +25,14 @@ function ChallengeScreen({ route, navigation }) {
             .then((result) => {
                 if (result.result === 1) {
                     navigation.navigate(
-                        'GameScreen', { playMode: { player_mode: "online" }, question: { type: 'jumble', word: result.question.question.content.word, duelId: duelId, challengeId: challengeId } }
+                        'GameScreen', {
+                        action: 'answer',
+                        playMode: { player_mode: "online" },
+                        question: {
+                            type: 'jumble',
+                            word: result.question.question.content.word, duelId: duelId, challengeId: challengeId
+                        }
+                    }
                     )
                 }
             })
@@ -33,8 +40,19 @@ function ChallengeScreen({ route, navigation }) {
     }
 
     const addChallengeHandler = (duelId, userId) => {
-        console.log('add challenge request received for::duelId::' + duelId + "::for user::" + userId)
+        navigation.navigate(
+            'GameScreen', {
+            action: 'question',
+            playMode: { player_mode: "online" },
+            duelId: duelId,
+            userId: userId,
+            playerName: 'somePlayer'
+        })
     }
+
+    // const addChallengeHandler = (duelId, userId) => {
+    //     console.log('add challenge request received for::duelId::' + duelId + "::for user::" + userId)
+    // }
 
     dispatch(setGameModeOnline())
     var gameContent = <View></View>

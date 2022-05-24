@@ -11,7 +11,6 @@ import { markChallengeAttempted } from "../../services/ChallengeService";
 
 function OnlineGamePad(props) {
 
-
     function attemptHandler() {
         markChallengeAttempted(props.duelId)
     }
@@ -35,8 +34,6 @@ function OnlineGamePad(props) {
                 {gameContent}
             </ImageBackground>
         </View>
-
-
         )
     )
 
