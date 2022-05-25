@@ -1,6 +1,8 @@
 import { Alert, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
-import GamePad from "../../components/game/GamePad"
+import OfflineGamePad from "../../components/game/OfflineGamePad"
+import OnlineGamePad from "../../components/game/OnlineGamePad"
+import { addChallenge } from "../../services/ChallengeService"
 import { resetGame } from "../../store/data/GameStateSlice"
 import { styles } from "../../styles/styles"
 
@@ -11,6 +13,9 @@ function GameScreen({ route, navigation }) {
     const dispatch = useDispatch()
 
     navigation.addListener('beforeRemove', (evt) => {
+        if ('online' === gameState.mode) {
+            return
+        }
         evt.preventDefault()
         Alert.alert(
             'Done with it ?',
@@ -33,9 +38,25 @@ function GameScreen({ route, navigation }) {
 
     let gameScreenContent = <View></View>
     if ('offline' === gameState.mode) {
-        gameScreenContent = <GamePad gameState={gameState} onBack={() => {
+
+        gameScreenContent = <OfflineGamePad gameState={gameState} onBack={() => {
             navigation.navigate('GameMode')
         }} />
+    }
+    if ('online' === gameState.mode) {
+        gameScreenContent = <OnlineGamePad
+            onFinishNavigator={() => { navigation.navigate('Challenges', {}) }}
+            currentGame={gameMode}
+            onBack={() => {
+                navigation.navigate('Challenges')
+            }}
+            onQuestionSet={(targetWord, jumbledWord) => {
+                addChallenge(gameMode.duelId, gameMode.userId, { question: { type: 'JUMBLE', content: { word: targetWord } } })
+                    .then(() => {
+                        navigation.navigate('Challenges')
+                    })
+            }} />
+
     }
 
     return (<View style={styles.parentContainer}>

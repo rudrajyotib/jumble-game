@@ -40,11 +40,17 @@ function SolutionPad(props) {
 
     }
 
+    function attemptHandler() {
+        if (props.attemptHandler) {
+            props.attemptHandler()
+        }
+    }
+
     const jumbleController = new JumbleController(game.question, game.answer)
     let gameContent = <View></View>
     {
         if (gameOn === true) {
-            gameContent = <JumbleSolutionController name={props.name} game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
+            gameContent = <JumbleSolutionController gameMode={props.gameMode} attemptHandler={attemptHandler} name={props.name} game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
         } else {
             gameContent = <GameOver onContinueGameOver={onContinueGameOver} result={result} />
         }
