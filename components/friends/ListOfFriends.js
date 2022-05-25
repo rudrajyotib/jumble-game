@@ -33,24 +33,26 @@ function ListOfFriends(props) {
     if (friendList.loading === true) {
         friendListContent = <View style={{ ...styles.card }}><Text>Loading list of friends</Text></View>
     } else {
+
         if (friendList.friends.length > 0) {
-            friendListContent = friendList.friends.map(friend => <SingleFriend
-                key={`'friend'${friend.id}`}
-                userName={props.userName}
-                userId={props.userId}
-                friendUserId={friend.friendUserId}
-                name={friend.name}
-                duelId={friend.duelId}
-                challengeHandler={(duelId, friendId, friendName) => {
-                    setDuelDisplay(() => {
-                        return {
-                            display: true,
-                            duelId: duelId,
-                            friendUserId: friendId,
-                            friendName: friendName
-                        }
-                    })
-                }} />)
+            friendListContent =
+                friendList.friends.map(friend => <SingleFriend
+                    key={`'friend'${friend.id}`}
+                    userName={props.userName}
+                    userId={props.userId}
+                    friendUserId={friend.friendUserId}
+                    name={friend.name}
+                    duelId={friend.duelId}
+                    challengeHandler={(duelId, friendId, friendName) => {
+                        setDuelDisplay(() => {
+                            return {
+                                display: true,
+                                duelId: duelId,
+                                friendUserId: friendId,
+                                friendName: friendName
+                            }
+                        })
+                    }} />)
         } else {
             friendListContent = <View style={{ ...styles.card }}><Text>You do not have any friends yet</Text></View>
         }
@@ -58,6 +60,7 @@ function ListOfFriends(props) {
 
     return (<View>
         {/* <Text>Hello list of Friends</Text> */}
+
         {friendListContent}
         {duelDisplay.display && <FriendshipDetails
             userName={props.userName}

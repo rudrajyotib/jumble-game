@@ -81,3 +81,10 @@ async function updateStatusOfDuelId(duelId, status) {
     if (204 != response.status) { return false }
     return true
 }
+
+export async function addChallenge(duelId, userId, question) {
+    const response = await axios.post("https://jumble-apis.herokuapp.com/api/challenge/addChallenge/" + duelId + "/" + userId, question)
+        .then(() => { return true })
+        .catch(() => { return false })
+    return response
+}

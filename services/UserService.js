@@ -56,8 +56,24 @@ export async function isChallengeable(userId, friendUserId) {
                 }
             }
         })
-        .catch(() => {
+        .catch((response) => {
             duelData.result = -1
         })
     return duelData
+}
+
+export async function getEmailForUserId(userId) {
+    const result = { found: false, email: '' }
+    await axios.get("https://jumble-apis.herokuapp.com/api/user/emailIdForLogin/" + userId)
+        .then((response) => {
+            if (response.status === 200) {
+                const userData = response.data
+                if (userData.email) {
+                    result.found = true
+                    result.email = userData.email
+                }
+            }
+        })
+        .catch(() => { })
+    return result
 }

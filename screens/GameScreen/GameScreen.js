@@ -1,14 +1,10 @@
-import { Alert, Text, View } from "react-native"
+import { Alert, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import OfflineGamePad from "../../components/game/OfflineGamePad"
 import OnlineGamePad from "../../components/game/OnlineGamePad"
-import QuestionPad from "../../components/jumble/QuestionPad"
-import { markChallengeFailure, markChallengeSuccess } from "../../services/ChallengeService"
+import { addChallenge } from "../../services/ChallengeService"
 import { resetGame } from "../../store/data/GameStateSlice"
 import { styles } from "../../styles/styles"
-import { GameConstants } from "../../utils/Constants"
-import { GameContainer } from "../../utils/GameContainer"
-import { randomiseString } from "../../utils/StringUtils"
 
 function GameScreen({ route, navigation }) {
 
@@ -55,27 +51,11 @@ function GameScreen({ route, navigation }) {
                 navigation.navigate('Challenges')
             }}
             onQuestionSet={(targetWord, jumbledWord) => {
-                console.log('targetWord is::' + targetWord)
+                addChallenge(gameMode.duelId, gameMode.userId, { question: { type: 'JUMBLE', content: { word: targetWord } } })
+                    .then(() => {
+                        navigation.navigate('Challenges')
+                    })
             }} />
-        // if ('answer' === gameMode.action) {
-        //     gameScreenContent = <OnlineGamePad
-        //         onFinishNavigator={() => { navigation.navigate('Challenges', {}) }}
-        //         currentGame={gameMode}
-        //         onBack={() => {
-        //             navigation.navigate('GameMode')
-        //         }} />
-        // } else if ('question' === gameMode.action) {
-        //     gameScreenContent = <OnlineGamePad
-        //         // showScore={false}
-        //         currentGame={gameMode}
-        //         // playerName={gameMode.playerName}
-        //         onQuestionSet={(targetWord, jumbledWord) => {
-        //             console.log('targetWord is::' + targetWord)
-        //         }}
-        //         onBack={() => {
-        //             navigation.navigate('Challenges', {})
-        //         }} />
-        // }
 
     }
 

@@ -1,4 +1,4 @@
-import { ImageBackground, ScrollView, View } from "react-native";
+import { ImageBackground, ScrollView, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import PendingChallenges from "../../components/game/PendingChallenges";
 import { styles } from "../../styles/styles";
@@ -61,18 +61,27 @@ function ChallengeScreen({ route, navigation }) {
     var gameContent = <View></View>
     if ('challenges' === selectedView) {
         if (challengesAreFetched === true) {
-            gameContent = <ScrollView>
-                <PendingChallenges
-                    userId={gameState.authenticatedUser.uid}
-                    challenges={fetchedChallenges}
-                    solveHandler={solveHandler} />
-            </ScrollView>
+            gameContent = <View>
+                <View style={{ paddingBottom: 30, paddingTop: 20, alignItems: 'center' }}>
+                    <Text style={{ fontSize: 18, fontStyle: 'italic' }}>Your challenges</Text>
+                </View>
+                <ScrollView>
+                    <PendingChallenges
+                        userId={gameState.authenticatedUser.uid}
+                        challenges={fetchedChallenges}
+                        solveHandler={solveHandler} />
+                </ScrollView>
+            </View>
         }
     } else if ('friends' === selectedView) {
-        gameContent = <ScrollView><ListOfFriends
-            onAddChallenge={addChallengeHandler}
-            userName={gameState.authenticatedUser.userName}
-            userId={gameState.authenticatedUser.uid} /></ScrollView>
+        gameContent = <View>
+            <View style={{ paddingBottom: 30, paddingTop: 20, alignItems: 'center' }}>
+                <Text style={{ fontSize: 18, fontStyle: 'italic' }}>Your friends</Text>
+            </View>
+            <ScrollView><ListOfFriends
+                onAddChallenge={addChallengeHandler}
+                userName={gameState.authenticatedUser.userName}
+                userId={gameState.authenticatedUser.uid} /></ScrollView></View>
     }
 
     return (<View style={{ ...styles.parentContainer, flex: 1 }}>
