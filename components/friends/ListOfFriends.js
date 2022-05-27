@@ -34,10 +34,10 @@ function ListOfFriends(props) {
         friendListContent = <View style={{ ...styles.card }}><Text>Loading list of friends</Text></View>
     } else {
 
-        if (friendList.friends.length > 0) {
+        if (friendList.friends && friendList.friends.length > 0) {
             friendListContent =
                 friendList.friends.map(friend => <SingleFriend
-                    key={`'friend'${friend.id}`}
+                    key={`'friend'${friend.friendUserId}`}
                     userName={props.userName}
                     userId={props.userId}
                     friendUserId={friend.friendUserId}
