@@ -47,35 +47,7 @@ function AuthenticatedUserFeed({ route, navigation }) {
             })
             .catch((err) => { })
     }
-    // useFocusEffect(React.useCallback(() => {
-    //     if (gameState.feed.duels.loaded === true) {
-    //         console.log('data already present, not loading duels')
-    //         return
-    //     }
-    //     getAllChallengesForUser(gameState.authenticatedUser.uid)
-    //         .then((response) => {
-    //             console.log('received response of duels::' + JSON.stringify(response))
-    //             if (response.result === 1) {
-    //                 dispatch(updateDuels({ duelList: response.challenges }))
-    //             }
-    //             else {
-    //                 dispatch(updateDuels({ duelList: [] }))
-    //             }
-    //         }).catch((err) => {
-    //             console.log('received errror response from duel search')
-    //             dispatch(updateDuels({ duelList: [] }))
-    //         })
 
-
-    // }, []))
-
-
-
-
-
-    // if (loading === true) {
-    //     return (<AppLoading />)
-    // }
 
     return (<View style={{ ...styles.parentContainer }}>
         <ImageBackground
