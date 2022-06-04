@@ -93,20 +93,21 @@ export const styles = StyleSheet.create(
         },
         buttonPrimary:
         {
-            borderWidth: 4,
+            borderWidth: 1,
             justifyContent: "center",
             alignItems: "center",
             borderColor: "black",
-            backgroundColor: "#09e85f",
-            paddingHorizontal: 20
+            // backgroundColor: "#09e85f",
+            paddingHorizontal: 20,
+            backgroundColor: 'mediumorchid'
         },
         buttonLowPriority:
         {
-            borderWidth: 4,
+            borderWidth: 1,
             justifyContent: "center",
             alignItems: "center",
             borderColor: "black",
-            backgroundColor: "#e80987"
+            backgroundColor: "lightgray"
         },
         undoButtonContainer: {
             padding: 10

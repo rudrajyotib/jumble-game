@@ -11,7 +11,7 @@ function QuestionPad(props) {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer }}>
             <View style={{ flex: 1, paddingTop: 50 }}>
 
-                {true === props.showScore && < HideWithKeyboard>
+                {true === props.showScore && < HideWithKeyboard style={{ paddingTop: 30 }}>
                     <ScoreSummary players={props.players} scores={props.scores} />
                 </HideWithKeyboard>}
                 <JumbleQuestionController name={props.playerName} onStart={(targetWord, jumbledWord) => {

@@ -20,12 +20,14 @@ function JumbleSolutionController(props) {
 
     let jumbleAnswerArea = <View></View>
     if ('await' === gameState) {
-        jumbleAnswerArea = <ReadinessCheck name={props.name} onStart={() => {
-            if ('online' === props.gameMode && props.attemptHandler) {
-                props.attemptHandler()
-            }
-            setGameState('on')
-        }} />
+        jumbleAnswerArea = <ReadinessCheck onBack={() => { props.onBack() }} name={props.name}
+            gameMode={props.gameMode}
+            onStart={() => {
+                if ('online' === props.gameMode && props.attemptHandler) {
+                    props.attemptHandler()
+                }
+                setGameState('on')
+            }} />
     }
     else if ('on' === gameState) {
         jumbleAnswerArea = <JumbleSolutionPadTimed game={game} onGameResult={gameResultHandler} />

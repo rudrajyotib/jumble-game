@@ -26,12 +26,14 @@ function EnglishLettersOnlyTextInput(props) {
 
     }
 
+    const fontSize = props.fontSize ? props.fontSize : 25
+
 
 
     return (
         <TextInput
             // onBlur={blurHandler}
-            style={{ ...props.style, fontWeight: props.fontWeight, fontSize: 25 }}
+            style={{ ...props.style, fontWeight: props.fontWeight, fontSize: fontSize }}
             onChangeText={changeHandler}
             autoCapitalize={props.upperCaseOnly === true ? "characters" : "none"}
             keyboardAppearance="default"

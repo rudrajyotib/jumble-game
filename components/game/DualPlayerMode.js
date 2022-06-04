@@ -17,14 +17,14 @@ function DualPlayerMode(props) {
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer, paddingTop: 40, flex: 1 }}>
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ ...styles.parentContainer, flex: 1 }}>
 
             <ImageBackground
-                source={imageDictionary.createBackground}
+                source={imageDictionary.landingBackground}
                 style={{ width: '100%', height: '100%' }}
                 resizeMethod="resize">
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View style={{ flex: 1 }}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+                    <View style={{ flex: 1, paddingTop: 300 }}>
                         <View style={{ flex: 9 }}>
                             <PlayerName caption="Player 1" onTextChange={(text) => setPlayer1(text)} />
                             <PlayerName caption="Player 2" onTextChange={(text) => setPlayer2(text)} />
@@ -32,7 +32,7 @@ function DualPlayerMode(props) {
                         <View style={{ flex: 2, alignItems: "flex-end" }}>
                             <PressableButton
                                 handlerFunction={proceedToGameHandler}
-                                style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
+                                style={{ ...styles.buttonCard, ...styles.buttonPrimary, backgroundColor: 'mediumorchid' }}
                                 disabled={!(('' !== player1) && ('' !== player2))}
                                 buttonSize="medium"
                                 buttonLabel="Proceed to Game" />

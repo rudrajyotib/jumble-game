@@ -40,49 +40,55 @@ function SignInScreen({ route, navigation }) {
     const [password, setPassword] = useState('')
     const [loginResult, setLoginResult] = useState({ code: 0, message: '' })
     const [signingInProgress, setSigningInProgress] = useState(false)
-    dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     return (
         <View style={{ ...styles.parentContainer }}>
             <ImageBackground
-                source={imageDictionary.createBackground}
+                source={imageDictionary.signInBackground}
                 style={{ width: '100%', height: '100%' }}
                 resizeMethod="resize">
-                <View style={{ flex: 1, paddingTop: 50 }}>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'orange', opacity: 0.5 }}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>User Id</Text>
+                <View style={{ flex: 1, paddingTop: 150 }}>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 3 }}>
+                            <Text style={{ fontSize: 18, fontFamily: 'RobotoMono-MediumItalic', opacity: 1 }}>User Id</Text>
+                        </View>
+                        <View style={{ flex: 9 }}>
+                            <EnglishLettersOnlyTextInput
+                                fontSize={18}
+                                // fontWeight={"bold"}
+                                upperCaseOnly={false}
+                                style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
+                                onTextChange={(text) => setUserName(text)}
+                                editable={true}
+                                value={userName}
+                                maxLength={20}
+                                freeText={true}
+                            />
+                        </View>
                     </View>
-                    <View style={{ flex: 2 }}>
-                        <EnglishLettersOnlyTextInput
-                            fontWeight={"bold"}
-                            upperCaseOnly={false}
-                            style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                            onTextChange={(text) => setUserName(text)}
-                            editable={true}
-                            value={userName}
-                            maxLength={20}
-                            freeText={true}
-                        />
-                    </View>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: 'orange', opacity: 0.5 }}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Password</Text>
-                    </View>
-                    <View style={{ flex: 2 }}>
-                        <EnglishLettersOnlyTextInput
-                            fontWeight={"bold"}
-                            upperCaseOnly={false}
-                            style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
-                            onTextChange={(text) => setPassword(text)}
-                            editable={true}
-                            value={password}
-                            maxLength={20}
-                            password={true}
-                            freeText={true}
-                        />
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 3 }}>
+                            <Text style={{ fontFamily: 'RobotoMono-MediumItalic', fontWeight: 'bold', fontSize: 18 }}>Password</Text>
+                        </View>
+                        <View style={{ flex: 9 }}>
+                            <EnglishLettersOnlyTextInput
+                                fontSize={18}
+                                // fontWeight={"bold"}
+                                upperCaseOnly={false}
+                                style={{ ...styles.input, ...{ backgroundColor: 'white', opacity: 0.8 } }}
+                                onTextChange={(text) => setPassword(text)}
+                                editable={true}
+                                value={password}
+                                maxLength={20}
+                                password={true}
+                                freeText={true}
+                            />
+                        </View>
                     </View>
                     <View style={{ flex: 3 }}>
-                        <PressableButton buttonSize="small" buttonLabel="Sign IN" disabled={signingInProgress === true}
-                            style={{ ...styles.buttonCard, ...styles.buttonPrimary, ...styles.sma }} handlerFunction={() => {
+                        <PressableButton buttonSize="small" buttonLabel="Sign In" disabled={signingInProgress === true}
+                            style={{ ...styles.buttonCard, ...styles.buttonPrimary, ...styles.small, backgroundColor: 'mediumorchid' }} handlerFunction={() => {
                                 setSigningInProgress(() => { return true })
                                 getEmailForUserId(userName)
                                     .then((result) => {
@@ -94,7 +100,8 @@ function SignInScreen({ route, navigation }) {
                                                     userName: user.user.displayName
                                                 }))
                                                 dispatch(setGameModeOnline())
-                                                navigation.navigate('Challenges', {})
+                                                navigation.navigate('AuthenticatedUserFeed', {})
+                                                setSigningInProgress(() => { return false })
                                             }, error => {
                                                 setSigningInProgress(() => { return false })
                                                 setLoginResult(() => { return { code: -1, message: 'Combination of user Id and password is not correct' } })

@@ -36,6 +36,8 @@ function GameScreen({ route, navigation }) {
         );
     })
 
+    console.log('GameScreen loaded with store::' + JSON.stringify(gameState))
+
     let gameScreenContent = <View></View>
     if ('offline' === gameState.mode) {
 
@@ -45,15 +47,15 @@ function GameScreen({ route, navigation }) {
     }
     if ('online' === gameState.mode) {
         gameScreenContent = <OnlineGamePad
-            onFinishNavigator={() => { navigation.navigate('Challenges', {}) }}
+            onFinishNavigator={() => { navigation.navigate('AuthenticatedUserFeed', {}) }}
             currentGame={gameMode}
             onBack={() => {
-                navigation.navigate('Challenges')
+                navigation.navigate('AuthenticatedUserFeed')
             }}
             onQuestionSet={(targetWord, jumbledWord) => {
                 addChallenge(gameMode.duelId, gameMode.userId, { question: { type: 'JUMBLE', content: { word: targetWord } } })
                     .then(() => {
-                        navigation.navigate('Challenges')
+                        navigation.navigate('AuthenticatedUserFeed')
                     })
             }} />
 

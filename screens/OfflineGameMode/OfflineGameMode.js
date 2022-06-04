@@ -1,7 +1,7 @@
 import { View } from "react-native"
 import { useDispatch } from "react-redux"
 import DualPlayerMode from "../../components/game/DualPlayerMode"
-import { setPlayers } from "../../store/data/GameStateSlice"
+import { setGameModeOffline, setPlayers } from "../../store/data/GameStateSlice"
 
 function OfflineGameMode({ route, navigation }) {
 
@@ -12,6 +12,7 @@ function OfflineGameMode({ route, navigation }) {
 
     function dualPlayerContinue(player1, player2) {
         dispatch(setPlayers({ players: [player1, player2] }))
+        dispatch(setGameModeOffline())
         navigation.navigate(
             'GameScreen',
             {

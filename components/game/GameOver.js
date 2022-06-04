@@ -28,7 +28,7 @@ function GameOver(props) {
 
 }
 
-gameOverStyle = StyleSheet.create
+const gameOverStyle = StyleSheet.create
     (
         {
 

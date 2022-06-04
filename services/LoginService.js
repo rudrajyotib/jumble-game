@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
 
@@ -52,4 +52,8 @@ export async function signIn(userName, password, successHandler, failureHandler)
                 failureHandler(err)
             }
         })
+}
+
+export async function signOutUser() {
+    signOut(authProvider())
 }

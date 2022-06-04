@@ -21,10 +21,11 @@ function OnlineGamePad(props) {
 
     if ('answer' === props.currentGame.action) {
         gameContent = <SolutionPad
-            name={props.currentGame.userName}
+            name={props.currentGame.challenger}
             game={new GameContainer(GameConstants.GAME_TYPE_JUMBLE, randomiseString(props.currentGame.question.word), props.currentGame.question.word)}
             duelId={props.currentGame.duelId}
             gameMode='online'
+            onBack={() => { props.onBack() }}
             attemptHandler={attemptHandler}
             onGameOver={(result) => {
                 if ('success' === result) {

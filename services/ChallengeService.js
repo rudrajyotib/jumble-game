@@ -21,7 +21,8 @@ export async function getAllChallenges() {
 export async function getAllChallengesForUser(userId) {
     // var challenges_link = GameConstants.BASE_SERVICE_LINK + "/challenges.json";
     const challengesList = { result: 0, challenges: [] };
-    await axios.get("https://jumble-apis.herokuapp.com/api/challenge/pendingduels/" + userId)
+    // https://jumble-apis.herokuapp.com/api/challenge/pendingduels/
+    await axios.get("https://621eca13849220b1fca15c71.mockapi.io/pendingduels/" + userId)
         .then((response) => {
             if (200 === response.status) {
                 challengesList.result = 1

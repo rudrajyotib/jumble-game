@@ -18,31 +18,32 @@ function GameMode({ route, navigation }) {
     return (
         <View style={styles.parentContainer}>
             <ImageBackground
-                source={imageDictionary.createBackground}
+                source={imageDictionary.landingBackground}
                 style={{ width: '100%', height: '100%' }}
                 resizeMethod="resize">
                 <View style={{ paddingTop: 180, flex: 1 }}>
-
-                    <View style={{ flex: 8 }}>
-                        {/* <View style={styles.transparentCard}> */}
-                        <View>
+                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
+                        <View style={{ flex: 8 }}>
+                            {/* <View style={styles.transparentCard}> */}
                             <View>
-                                <PressableButton handlerFunction={proceedWithOnlineGameModeHandler}
-                                    style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
-                                    disabled={false}
-                                    buttonSize="medium"
-                                    buttonLabel="Online challenge" />
+                                <View>
+                                    <PressableButton handlerFunction={proceedWithOnlineGameModeHandler}
+                                        style={{ ...styles.buttonCard, ...styles.buttonPrimary, backgroundColor: 'mediumorchid' }}
+                                        disabled={false}
+                                        buttonSize="medium"
+                                        buttonLabel="Play online" />
+                                </View>
                             </View>
                         </View>
-                    </View>
-                    <View style={{ flex: 8 }}>
-                        <View>
+                        <View style={{ flex: 8 }}>
                             <View>
-                                <PressableButton handlerFunction={proceedWithOfflineGameModeHandler}
-                                    style={{ ...styles.buttonCard, ...styles.buttonPrimary }}
-                                    disabled={false}
-                                    buttonSize="medium"
-                                    buttonLabel="Passing the device" />
+                                <View>
+                                    <PressableButton handlerFunction={proceedWithOfflineGameModeHandler}
+                                        style={{ ...styles.buttonCard, ...styles.buttonPrimary, backgroundColor: 'mediumslateblue' }}
+                                        disabled={false}
+                                        buttonSize="medium"
+                                        buttonLabel="Play offline" />
+                                </View>
                             </View>
                         </View>
                     </View>

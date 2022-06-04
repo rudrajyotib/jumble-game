@@ -50,7 +50,7 @@ function SolutionPad(props) {
     let gameContent = <View></View>
     {
         if (gameOn === true) {
-            gameContent = <JumbleSolutionController gameMode={props.gameMode} attemptHandler={attemptHandler} name={props.name} game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
+            gameContent = <JumbleSolutionController onBack={() => { props.onBack() }} gameMode={props.gameMode} attemptHandler={attemptHandler} name={props.name} game={jumbleController} onSuccess={onSuccessHandler} onSkip={onSkipHandler} onTimeOut={onTimeOutHandler} />
         } else {
             gameContent = <GameOver onContinueGameOver={onContinueGameOver} result={result} />
         }

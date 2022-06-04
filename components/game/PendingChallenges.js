@@ -13,29 +13,31 @@ function PendingChallenges(props) {
 
     // const [allChallenges, setAllChallenges] = useState([])
     // const [loadingQuestions, setLoadingQuestions] = useState(true)
-    const [pendingChallengesState, setPendingChallengesState] = useState({ allChallenges: [], loading: true })
+    // const [pendingChallengesState, setPendingChallengesState] = useState({ allChallenges: [], loading: true })
 
-    useFocusEffect(React.useCallback(() => {
-        getAllChallengesForUser(props.userId)
-            .then((challengesList) => {
-                setPendingChallengesState(() => {
-                    return { loading: false, allChallenges: challengesList.challenges }
-                })
-            })
-            .catch((err) => { })
-        // setLoadingQuestions(() => { return false })
-        return (() => { })
-    }, []))
+    // useFocusEffect(React.useCallback(() => {
+    //     getAllChallengesForUser(props.userId)
+    //         .then((challengesList) => {
+    //             setPendingChallengesState(() => {
+    //                 return { loading: false, allChallenges: challengesList.challenges }
+    //             })
+    //         })
+    //         .catch((err) => { })
+    //     // setLoadingQuestions(() => { return false })
+    //     return (() => { })
+    // }, []))
 
-    const solveHandler = (duelId, challengeId) => {
+    const solveHandler = (duelId, challengeId, challenger) => {
         // console.log("Word received" + JSON.stringify(question))
-        props.solveHandler(duelId, challengeId)
+        props.solveHandler(duelId, challengeId, challenger)
     }
+
+    const allChallenges = props.challenges
 
 
     let gameContent = <View />
-    if (pendingChallengesState.allChallenges && pendingChallengesState.allChallenges.length > 0) {
-        gameContent = pendingChallengesState.allChallenges.map(
+    if (allChallenges && allChallenges.length > 0) {
+        let challengeContent = allChallenges.map(
             challlenge => <SingleChallenge
                 key={`'challenge'${challlenge.duelId}`}
                 challenger={challlenge.challenger}
@@ -43,24 +45,22 @@ function PendingChallenges(props) {
                 challengeId={challlenge.challengeId}
                 challengeDate={challlenge.challengeDate}
                 solveHandler={solveHandler} />
-            // question={{ ...challlenge.question, questionId: challlenge.gameId }}
-
         )
+
+        gameContent = <View style={{ flex: 1 }}>
+            <View style={{ alignItems: "center" }}>
+                <Text style={{ fontFamily: 'RobotoMono-Italic' }}>You have challenges waiting to be attempted.</Text>
+            </View>
+            <View>
+                {challengeContent}
+            </View>
+        </View>
     } else {
-        if (false === pendingChallengesState.loading) {
-            gameContent = <View style={{ flex: 1, paddingTop: 100 }}>
-                <View style={{ ...styles.card, margin: 50 }}>
-                    <Text>  You have no pending Challenges</Text>
-                </View>
-                <View style={{ margin: 50 }}>
-                    <PressableButton sbuttonSize='large' buttonLabel='Go Back' style={{ ...styles.buttonCard, ...styles.buttonPrimary }} />
-                </View>
+        gameContent = <View style={{ flex: 1, paddingTop: 100 }}>
+            <View style={{ ...styles.card, margin: 50 }}>
+                <Text style={{ fontFamily: 'RobotoMono-Italic' }}>  You have no pending Challenges</Text>
             </View>
-        } else {
-            gameContent = <View>
-                <Text>Loading challenges</Text>
-            </View>
-        }
+        </View>
     }
 
     return (<View style={{ flex: 1 }}>
