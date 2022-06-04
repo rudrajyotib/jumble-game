@@ -6,6 +6,9 @@ import SingleChallenge from "../elements/SingleChallenge"
 import { getAllChallengesForUser } from "../../services/ChallengeService";
 import { useFocusEffect } from "@react-navigation/native"
 import React, { useState } from "react"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { updateDuels } from "../../store/data/GameStateSlice"
 
 
 function PendingChallenges(props) {
@@ -27,13 +30,44 @@ function PendingChallenges(props) {
     //     return (() => { })
     // }, []))
 
+    const gameState = useSelector(state => state.gameState)
+    const dispatch = useDispatch()
+
+    useFocusEffect(React.useCallback(() => {
+        if (gameState.feed.duels.loaded === true) {
+            console.log('data already present, not loading duels')
+            props.onDataLoad()
+            return
+        }
+        getAllChallengesForUser(gameState.authenticatedUser.uid)
+            .then((response) => {
+                // console.log('received response of duels::' + JSON.stringify(response))
+                if (response.result === 1) {
+                    dispatch(updateDuels({ duelList: response.challenges }))
+                    props.onDataLoad()
+                }
+                else {
+                    dispatch(updateDuels({ duelList: [] }))
+                    props.onDataLoad()
+                }
+            }).catch((err) => {
+                console.log('received errror response from duel search')
+                dispatch(updateDuels({ duelList: [] }))
+                props.onDataLoad()
+            })
+
+
+    }, []))
+
     const solveHandler = (duelId, challengeId, challenger) => {
         // console.log("Word received" + JSON.stringify(question))
         props.solveHandler(duelId, challengeId, challenger)
     }
 
-    const allChallenges = props.challenges
+    // const allChallenges = props.challenges
+    const allChallenges = gameState.feed.duels.duelList
 
+    // console.log('challengses::' + JSON.stringify(allChallenges))
 
     let gameContent = <View />
     if (allChallenges && allChallenges.length > 0) {

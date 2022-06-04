@@ -17,11 +17,14 @@ import { styles } from "../../styles/styles";
 function AuthenticatedUserFeed({ route, navigation }) {
 
     const gameState = useSelector(state => state.gameState)
-    const [loading, setLoading] = useState({ loading: true, duels: [] })
+    const [loading, setLoading] = useState({ loading: true })
+    const dataLoadedHandler = () => {
+        setLoading(() => { return false })
+    }
     // const loading = gameState.feed.duels.loaded === true
     const [duels, setDuels] = useState([])
     const dispatch = useDispatch()
-    console.log('gameState as received::' + JSON.stringify(gameState))
+    // console.log('gameState as received::' + JSON.stringify(gameState))
     const solveHandler = (duelId, challengeId, challenger) => {
         getChallengeForDuel(challengeId)
             .then((result) => {
@@ -44,33 +47,35 @@ function AuthenticatedUserFeed({ route, navigation }) {
             })
             .catch((err) => { })
     }
-    useFocusEffect(React.useCallback(() => {
-        if (gameState.feed.duels.loaded === true) {
-            console.log('data already present, not loading duels')
-            return
-        }
-        getAllChallengesForUser(gameState.authenticatedUser.uid)
-            .then((response) => {
-                console.log('received response of duels::' + JSON.stringify(response))
-                if (response.result === 1) {
-                    dispatch(updateDuels({ duelList: response.challenges }))
-                }
-                else {
-                    dispatch(updateDuels({ duelList: [] }))
-                }
-            }).catch((err) => {
-                console.log('received errror response from duel search')
-                dispatch(updateDuels({ duelList: [] }))
-            })
-    }, []))
+    // useFocusEffect(React.useCallback(() => {
+    //     if (gameState.feed.duels.loaded === true) {
+    //         console.log('data already present, not loading duels')
+    //         return
+    //     }
+    //     getAllChallengesForUser(gameState.authenticatedUser.uid)
+    //         .then((response) => {
+    //             console.log('received response of duels::' + JSON.stringify(response))
+    //             if (response.result === 1) {
+    //                 dispatch(updateDuels({ duelList: response.challenges }))
+    //             }
+    //             else {
+    //                 dispatch(updateDuels({ duelList: [] }))
+    //             }
+    //         }).catch((err) => {
+    //             console.log('received errror response from duel search')
+    //             dispatch(updateDuels({ duelList: [] }))
+    //         })
+
+
+    // }, []))
 
 
 
 
 
-    if (gameState.feed.duels.loaded === false) {
-        return (<AppLoading />)
-    }
+    // if (loading === true) {
+    //     return (<AppLoading />)
+    // }
 
     return (<View style={{ ...styles.parentContainer }}>
         <ImageBackground
@@ -82,7 +87,10 @@ function AuthenticatedUserFeed({ route, navigation }) {
                 <View style={{ flex: 2, alignItems: "center" }}><Text style={{ paddingTop: 40, fontFamily: 'RobotoMono-Regular', fontSize: 22 }}>{gameState.authenticatedUser.userName}</Text></View>
                 <View style={{ flex: 16 }}>
                     <ScrollView>
-                        <PendingChallenges challenges={gameState.feed.duels.duelList} solveHandler={solveHandler} />
+                        <PendingChallenges
+                            // challenges={gameState.feed.duels.duelList}
+                            onDataLoad={dataLoadedHandler}
+                            solveHandler={solveHandler} />
                     </ScrollView>
                 </View>
                 <View style={{ flex: 2 }}>
