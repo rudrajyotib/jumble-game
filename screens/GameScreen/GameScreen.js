@@ -36,7 +36,6 @@ function GameScreen({ route, navigation }) {
         );
     })
 
-    console.log('GameScreen loaded with store::' + JSON.stringify(gameState))
 
     let gameScreenContent = <View></View>
     if ('offline' === gameState.mode) {

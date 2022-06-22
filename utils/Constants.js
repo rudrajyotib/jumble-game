@@ -5,3 +5,8 @@ export const GameConstants = {
 
 }
 
+export const headerMap = {
+    'challenges': 'Your challenges',
+    'friends': 'Friends'
+}
+

@@ -1,7 +1,5 @@
-import { ImageBackground, Pressable, Text, View } from "react-native";
-import imageDictionary from "../../assets/images";
+import { Pressable, Text, View } from "react-native";
 import { styles } from "../../styles/styles";
-import PressableButton from "./PressableButton";
 
 
 function SingleChallenge(props) {
@@ -13,13 +11,14 @@ function SingleChallenge(props) {
             opacity={0.3}
             style={{ width: '100%', height: '100%' }}
             resizeMethod="resize" style={{ flex: 18 }} > */}
-        <Pressable style={{ ...styles.card, paddingVertical: 10, backgroundColor: 'plum', opacity: '0.9' }} onPress={() => { props.solveHandler(props.duelId, props.challengeId, props.challenger) }}>
+        <Pressable style={{ ...styles.card, paddingVertical: 10, backgroundColor: 'white', opacity: '0.9' }}
+            onPress={() => { props.solveHandler(props.duelId, props.challengeId, props.challenger) }}>
             <View style={{ flexDirection: "row" }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: "column", justifyContent: "center", flex: 1, alignContent: "center", paddingLeft: 20 }}>
                         <View style={{ flexDirection: "row" }}>
-                            <View style={{ flex: 6 }}><Text style={{ fontFamily: 'RobotoMono-Regular', fontSize: 18, color: 'maroon' }}>{props.challenger}</Text></View>
-                            <View style={{ flex: 4 }}><Text style={{ fontFamily: 'RobotoMono-Regular', fontSize: 18, color: 'maroon', paddingLeft: 30 }}>[1 - 2000]</Text></View>
+                            <View style={{ flex: 6 }}><Text style={{ fontFamily: 'RobotoMono-Regular', fontSize: 18, color: 'black' }}>{props.challenger}</Text></View>
+                            {/* <View style={{ flex: 4 }}><Text style={{ fontFamily: 'RobotoMono-Regular', fontSize: 18, color: 'black', paddingLeft: 30 }}>[1 - 2000]</Text></View> */}
                         </View>
                         {/* <View><Text> on {props.challengeDate}</Text></View> */}
                     </View>

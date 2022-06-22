@@ -5,7 +5,6 @@ export async function getAllChallenges() {
     var challenges_link = GameConstants.BASE_SERVICE_LINK + "/challenges.json";
     const response = await axios.get("http://demo5985284.mockable.io/challenges")
     const challenges = [];
-    // console.log('Challenges response' + JSON.stringify(response))
     for (const key in response.data) {
         const challenge = {
             gameId: key,
@@ -21,8 +20,9 @@ export async function getAllChallenges() {
 export async function getAllChallengesForUser(userId) {
     // var challenges_link = GameConstants.BASE_SERVICE_LINK + "/challenges.json";
     const challengesList = { result: 0, challenges: [] };
-    // https://jumble-apis.herokuapp.com/api/challenge/pendingduels/
-    await axios.get("https://621eca13849220b1fca15c71.mockapi.io/pendingduels/" + userId)
+
+    // await axios.get("https://621eca13849220b1fca15c71.mockapi.io/pendingduels/" + userId)
+    await axios.get("https://jumble-apis.herokuapp.com/api/challenge/pendingduels/" + userId)
         .then((response) => {
             if (200 === response.status) {
                 challengesList.result = 1

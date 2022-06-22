@@ -1,19 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
-import ChallengeScreen from './screens/Challenge/ChallengeScreen';
-import OfflineGameMode from './screens/OfflineGameMode/OfflineGameMode';
+import AuthenticatedUserFeed from './screens/AuthenticatedUserFeed/AuthenticatedUserFeed';
+import AuthenticatedUserHome from './screens/AuthenticatedUserHome/AuthenticatedUserHome';
+import GameMode from './screens/GameMode/GameMode';
 import GameScreen from './screens/GameScreen/GameScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
-import SignInScreen from './screens/SignIn/SignIn'
-import GameMode from './screens/GameMode/GameMode'
+import OfflineGameMode from './screens/OfflineGameMode/OfflineGameMode';
+import SignInScreen from './screens/SignIn/SignIn';
 import store from './store/store';
-import AuthenticatedUserHome from './screens/AuthenticatedUserHome/AuthenticatedUserHome';
-import ChallengeScreenNew from './screens/Challenge/ChallengeScreenNew';
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import AuthenticatedUserFeed from './screens/AuthenticatedUserFeed/AuthenticatedUserFeed';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,7 +46,6 @@ export default function App() {
           <Stack.Screen name="GameMode" component={GameMode} />
           <Stack.Screen name="OfflineGameMode" component={OfflineGameMode} />
           <Stack.Screen name="GameScreen" component={GameScreen} options={{ gestureEnabled: false }} />
-          <Stack.Screen name="Challenges" component={ChallengeScreenNew} />
           <Stack.Screen name="Login" component={SignInScreen} />
           <Stack.Screen name="AuthenticatedUserHome" component={AuthenticatedUserHome} options={{ gestureEnabled: false }} />
           <Stack.Screen name="AuthenticatedUserFeed" component={AuthenticatedUserFeed} options={{ gestureEnabled: false }} />

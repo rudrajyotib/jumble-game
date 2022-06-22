@@ -1,30 +1,29 @@
-import { useFocusEffect } from "@react-navigation/native";
-import AppLoading from "expo-app-loading";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ImageBackground, ScrollView, Text, View } from "react-native";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import imageDictionary from "../../assets/images";
 import PressableButton from "../../components/elements/PressableButton";
+import ListOfFriendsNew from "../../components/friends/ListOfFriendsNew";
 import PendingChallenges from "../../components/game/PendingChallenges";
-import { getAllChallengesForUser, getAllChallengesForUserCacheEnabled, getChallengeForDuel } from "../../services/ChallengeService";
-import { signOutUser } from "../../services/LoginService";
-import { setGameModeOnline, updateDuels } from "../../store/data/GameStateSlice";
+import { getChallengeForDuel } from "../../services/ChallengeService";
 import { styles } from "../../styles/styles";
+import { headerMap } from "../../utils/Constants";
 
 
 function AuthenticatedUserFeed({ route, navigation }) {
 
     const gameState = useSelector(state => state.gameState)
-    const [loading, setLoading] = useState({ loading: true })
+
+    const [pageState, setPageState] = useState({ loading: true, context: 'challenges' })
     const dataLoadedHandler = () => {
-        setLoading(() => { return false })
+        setPageState((currentState) => {
+            const newState = { ...currentState }
+            newState.loading = false
+            return newState
+        })
     }
-    // const loading = gameState.feed.duels.loaded === true
     const [duels, setDuels] = useState([])
     const dispatch = useDispatch()
-    // console.log('gameState as received::' + JSON.stringify(gameState))
     const solveHandler = (duelId, challengeId, challenger) => {
         getChallengeForDuel(challengeId)
             .then((result) => {
@@ -48,6 +47,28 @@ function AuthenticatedUserFeed({ route, navigation }) {
             .catch((err) => { })
     }
 
+    const addChallengeHandler = (duelId, userId) => {
+        navigation.navigate(
+            'GameScreen', {
+            action: 'question',
+            playMode: { player_mode: "online" },
+            duelId: duelId,
+            userId: userId,
+            playerName: gameState.authenticatedUser.userName
+        })
+    }
+
+    let content = <View />
+
+
+    if ('challenges' === pageState.context) {
+        content = <PendingChallenges
+            // challenges={gameState.feed.duels.duelList}
+            onDataLoad={dataLoadedHandler}
+            solveHandler={solveHandler} />
+    } else if ('friends' === pageState.context) {
+        content = <ListOfFriendsNew onChallenge={addChallengeHandler} onDataLoad={dataLoadedHandler} />
+    }
 
     return (<View style={{ ...styles.parentContainer }}>
         <ImageBackground
@@ -56,25 +77,60 @@ function AuthenticatedUserFeed({ route, navigation }) {
             resizeMethod="scale"
             style={{ flex: 18 }}>
             <View style={{ flex: 1 }}>
-                <View style={{ flex: 2, alignItems: "center" }}><Text style={{ paddingTop: 40, fontFamily: 'RobotoMono-Regular', fontSize: 22 }}>{gameState.authenticatedUser.userName}</Text></View>
+                <View style={{ flex: 2, alignItems: "center" }}>
+                    <Text style={{ paddingTop: 40, fontFamily: 'RobotoMono-Regular', fontSize: 22 }}>
+                        {headerMap[pageState.context]}
+                    </Text>
+                </View>
                 <View style={{ flex: 16 }}>
                     <ScrollView>
-                        <PendingChallenges
-                            // challenges={gameState.feed.duels.duelList}
-                            onDataLoad={dataLoadedHandler}
-                            solveHandler={solveHandler} />
+                        {content}
                     </ScrollView>
                 </View>
-                <View style={{ flex: 2 }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <View>
-                            <PressableButton style={{ ...styles.buttonPrimary }} buttonLabel={'challenge a friend'} />
-                        </View>
-                        <View>
-                            <PressableButton style={{ ...styles.buttonPrimary }} buttonLabel={'add friend'} />
-                        </View>
+                {pageState.loading === false && <View style={{ flex: 2 }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+                        <ScrollView horizontal={true}>
+                            <View>
+                                <PressableButton
+                                    handlerFunction={() => {
+                                        if (pageState.context === 'friends') {
+                                            return
+                                        }
+                                        setPageState((currentState) => {
+                                            const newState = { ...currentState }
+                                            newState.context = 'friends'
+                                            newState.loading = true
+                                            return newState
+                                        })
+                                    }}
+                                    style={{ ...styles.buttonPrimary }}
+                                    buttonLabel={'Challenge'} />
+                            </View>
+                            <View>
+                                <PressableButton
+                                    handlerFunction={() => {
+                                        if (pageState.context === 'challenges') {
+                                            return
+                                        }
+                                        setPageState((currentState) => {
+                                            const newState = { ...currentState }
+                                            newState.context = 'challenges'
+                                            newState.loading = true
+                                            return newState
+                                        })
+                                    }}
+                                    style={{ ...styles.buttonPrimary }}
+                                    buttonLabel={'Solve'} />
+                            </View>
+                            <View>
+                                <PressableButton style={{ ...styles.buttonPrimary }} buttonLabel={'Friend requests'} />
+                            </View>
+                            <View>
+                                <PressableButton style={{ ...styles.buttonPrimary }} buttonLabel={'Logout'} />
+                            </View>
+                        </ScrollView>
                     </View>
-                </View>
+                </View>}
             </View>
         </ImageBackground>
 

@@ -47,7 +47,6 @@ export async function signIn(userName, password, successHandler, failureHandler)
             }
         })
         .catch((err) => {
-            console.log(JSON.stringify(err))
             if (failureHandler) {
                 failureHandler(err)
             }
